@@ -26,12 +26,11 @@ world = (x, y) => {
     }
 
     // windows
-    if (win = (windows[y / 60 | 0]||[])[x / 60 | 0]) {
-        [xx, yy] = win;
-        if (between(yy-6, y, yy) && between(xx, x, xx + 36)) {
+    if ((windows[y / 60 | 0]||[])[x / 60 | 0]) {
+        if (between(24, y % 60, 30) && between(0, x % 60, 36)) {
             return 90;
         }
-        if (between(yy, y, yy + 24) && between(xx + 6, x, xx + 30)) {
+        if (between(30, y % 60, 54) && between(6, x % 60, 30)) {
             return 0;
         }
     }
