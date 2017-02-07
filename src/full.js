@@ -11,12 +11,7 @@ wizard = (x,y) => {
 mod = x => (x + 360) % 360;
 between = (x,y,z) => x < y && y < z;
 
-world = (x, y) => {
-    // player
-    if (between(playery, y, playery + 24) && between(82, mod(x - scrollx), 98) && wizard(mod(last?x-scrollx-83:16-x+scrollx+83),y-playery)) {
-        return wizard(mod(last?x-scrollx-83:16-x+scrollx+83),y-playery);
-    }
-
+tower = (x, y) => {
     // door
     if (between(18, y, 22) && between(90, x, 94)) {
         return 20;
@@ -45,7 +40,7 @@ windows = [];
 for(y=12;y--;) {
     windows[y] = [];
     for (x=6;x--;) {
-        windows[y][x] = Math.random()<.5;
+        windows[y][x] = 1;//    Math.random()*12<12-y;
     }
 }
 
@@ -98,9 +93,20 @@ update = (x,y) => {
             xp = (1-a/Math.PI)*180|0;
             s = Math.sin(a)*40+40|0;
             for (y=160;y--;) {
-                w = world(mod(xp+scrollx),y+scrolly);
+                // player
+                if (between(playery, y+scrolly, playery + 24) && between(82, mod(xp), 98) && wizard(mod(last?mod(xp)-83:16-mod(xp)+83),y+scrolly-playery)) {
+                    color = wizard(mod(last?mod(xp)-83:16-mod(xp)+83),y+scrolly-playery);
+                }
+                // sky / ground
+                else if (scrolly < -y || scrolly + y > 750) {
+                    color = 10;
+                }
+                // tower
+                else {
+                    color = s-100 + tower(mod(xp+scrollx),y+scrolly);
+                }
                 d = Math.min(1, Math.max(0,2-Math.hypot(60-x, playery-y-scrolly+12)/12));
-                c.fillStyle = `hsl(${240+d*magic|0},20%,${scrolly < -y ? 10 : s-100+w+d*magic/10|0}%)`;
+                c.fillStyle = `hsl(${240+d*magic|0},20%,${color+d*magic/10|0}%)`;
                 c.fillRect(x*4,160*4-y*4,4,4);
             }
         }
@@ -109,7 +115,7 @@ update = (x,y) => {
         /*
         for (x=360;x--;) {
             for(y=160;y--;) {
-                w = world(x,y);
+                w = tower(x,y);
                 c.fillStyle = `hsl(240,20%,${w}%)`;
                 c.fillRect(300 + x, 160 - y, 1,1);
             }
