@@ -45,9 +45,7 @@ windows = [];
 for(y=12;y--;) {
     windows[y] = [];
     for (x=6;x--;) {
-        if (Math.random()<.5) {
-            windows[y][x] = [x * 60, y*60+30];
-        }
+        windows[y][x] = Math.random()<.5;
     }
 }
 
@@ -82,8 +80,7 @@ update = (x,y) => {
     }
 
     // check collision
-    win = (windows[playery / 60 | 0]||[])[mod(90 + scrollx + 8) / 60 | 0];
-    if (sy < 0 && win && ([x,y] = win) && playery <= y && y <= playery - sy && between(46, mod(x - scrollx), 98)) {
+    if (sy < 0 && (windows[playery / 60 | 0]||[])[mod(98 + scrollx) / 60 | 0] && playery % 60 <= 30 && 30 <= playery % 60 - sy && between(0, 52 - (scrollx + 38) % 60, 52)) {
         playery += 30 - playery % 30;
         sy = 15;
     }
