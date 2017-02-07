@@ -35,7 +35,8 @@ world = (x, y) => {
         }
     }
 
-    return y % 6 && (x + (y / 6 | 0) % 2 * 6) % 12 ? 80 : 0;
+    // wall
+    return y % 6 && (x + (y / 6 | 0) % 2 * 6) % 12 && 80;
 }
 
 scrollx = 1;
@@ -46,7 +47,8 @@ windows = [
 ];
 
 last = 2;
-playery = sy = scrolly = move = lost = 0;
+scrolly = -20;
+playery = sy = move = lost = 0;
 magic = 180;
 
 keys=[];
@@ -95,7 +97,7 @@ update = (x,y) => {
             for (y=160;y--;) {
                 w = world(mod(xp+scrollx),y+scrolly);
                 d = Math.min(1, Math.max(0,2-Math.hypot(60-x, playery-y-scrolly+12)/12));
-                c.fillStyle = `hsl(${240+d*magic|0},20%,${s-100+w+d*magic/10|0}%)`;
+                c.fillStyle = `hsl(${240+d*magic|0},20%,${scrolly < -y ? 10 : s-100+w+d*magic/10|0}%)`;
                 c.fillRect(x*4,160*4-y*4,4,4);
             }
         }
