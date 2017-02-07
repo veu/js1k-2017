@@ -26,7 +26,8 @@ world = (x, y) => {
     }
 
     // windows
-    for ([xx,yy] of windows) {
+    if (win = (windows[y / 60 | 0]||[])[x / 60 | 0]) {
+        [xx, yy] = win;
         if (between(yy-6, y, yy) && between(xx, x, xx + 36)) {
             return 90;
         }
@@ -41,10 +42,15 @@ world = (x, y) => {
 
 scrollx = 1;
 
-windows = [
-    [24,30],
-    [132,90]
-];
+windows = [];
+for(y=12;y--;) {
+    windows[y] = [];
+    for (x=6;x--;) {
+        if (Math.random()<.5) {
+            windows[y][x] = [x * 60, y*60+30];
+        }
+    }
+}
 
 last = 2;
 scrolly = -20;
@@ -77,7 +83,8 @@ update = (x,y) => {
     }
 
     // check collision
-    if (windows.some(([x,y]) => playery <= y && y <= playery - sy && between(46, mod(x - scrollx), 98))) {
+    win = (windows[playery / 60 | 0]||[])[mod(90 + scrollx + 8) / 60 | 0];
+    if (sy < 0 && win && ([x,y] = win) && playery <= y && y <= playery - sy && between(46, mod(x - scrollx), 98)) {
         playery += 30 - playery % 30;
         sy = 15;
     }
