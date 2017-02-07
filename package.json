@@ -1,0 +1,16 @@
+{
+  "name": "js1k-2017",
+  "version": "1.0.0",
+  "description": "A simple platformer about climbing a wizard tower.",
+  "author": "Rebecca",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4",
+    "gulp-size": "^2.1.0",
+    "gulp-watch": "^4.3.10",
+    "regpack": "git+https://github.com/Siorki/RegPack.git#master"
+  }
+}
