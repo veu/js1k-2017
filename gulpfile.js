@@ -1,5 +1,4 @@
 const babel = require('gulp-babel');
-const cmdRegPack = require('regpack').cmdRegPack;
 const fs = require('fs');
 const gulp = require('gulp');
 const manglePlugin = require('./babel/mangle-plugin');
@@ -12,18 +11,12 @@ gulp.task('default', ['join_assets'], function () {
   gulp.watch('src/*', ['join_assets']);
 });
 
-gulp.task('join_assets', ['regpack'], function () {
-  const js = fs.readFileSync('dist/packed.js', 'utf8');
+gulp.task('join_assets', ['minify'], function () {
+  const js = fs.readFileSync('dist/min.js', 'utf8');
   return gulp.src('src/shim.html')
     .pipe(replace(/<demo>/g, js))
     .pipe(rename('index.html'))
     .pipe(gulp.dest('dist'));
-});
-
-gulp.task('regpack', ['minify'], function () {
-  const js = fs.readFileSync('dist/min.js', 'utf8');
-  const packed = cmdRegPack(js, {reassignVars: false});
-  fs.writeFileSync('dist/packed.js', packed);
 });
 
 gulp.task('minify', function () {
@@ -71,5 +64,6 @@ gulp.task('minify', function () {
     // random other changes that increase size (eg. 1e3 => 1000).
     .pipe(replace(/;(?=}|$)/g, ''))
     .pipe(rename('min.js'))
+    .pipe(size({pretty: false, showFiles: true}))
     .pipe(gulp.dest('dist'));
 });
