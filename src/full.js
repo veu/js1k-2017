@@ -23,13 +23,11 @@ tower = (x, y) =>
                     : between(30, y % 60, 54) && between(6, x % 60, 30) && 1
             ) || y % 6 && (x + (y / 6 | 0) % 2 * 6) % 12 && 80;
 
-scrollx = 1;
-
 windows = [];
-for(y=12;y--;)
-    for (x=6;x--;)
-        windows[y*6+x] = Math.random()*12<12-y;
+for(i=72;i--;)
+    windows[i] = Math.random()*12<12-(i/6|0);
 
+scrollx = 1;
 last = 2;
 scrolly = -20;
 playery = sy = move = lost = 0;
