@@ -25,8 +25,9 @@ tower = (x, y) =>
 
 M = Math;
 windows = [];
-for(i = 72; i--;)
-    windows[i] = M.random() * 12 < 12 - (i / 6 | 0);
+
+for(i = 120; i--;)
+    windows[i] = (x = M.sin(i-5) * 1e4) - M.floor(x) < .5 - i / 540;
 
 scrollx = 1;
 last = 2;
@@ -45,7 +46,7 @@ setInterval(e => {
         scrollx = mod(scrollx - !!keys[0]*4 + !!keys[2]*4);
 
         // update speed
-        sy > -(keys[1] && magic && magic-- ? 4 : 12) && sy--;
+        sy > -(keys[1] && magic && magic-- ? 2 : 12) && sy--;
 
         // update position
         playery += sy;
@@ -55,9 +56,9 @@ setInterval(e => {
         // check collision
         if (sy < 0 & windows[(playery / 60 | 0) * 6 + mod(98 + scrollx) / 60 | 0] & playery % 60 <= 30 & 30 <= playery % 60 - sy & between(0, 52 - (scrollx + 38) % 60, 52))
             playery += 30 - playery % 30,
-            sy = 15;
+            sy = 12;
 
-        sy = playery > 0 ? sy : 15;
+        sy = playery > 0 ? sy : 12;
 
         // check death
         lost |= scrolly - playery > 30;
@@ -69,7 +70,7 @@ setInterval(e => {
                 color = 
                     // player
                     between(playery, y + scrolly, playery + 24) & between(82, xp, 98) && wizard(mod(last ? xp - 83 : 99 - xp), y + scrolly - playery)
-                    || (scrolly < -y || scrolly + y > 750
+                    || (scrolly < -y || scrolly + y > 1230
                         // sky / ground
                         ? 10
                         // tower
