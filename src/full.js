@@ -23,9 +23,10 @@ tower = (x, y) =>
                     : between(30, y % 60, 54) && between(6, x % 60, 30) && 1
             ) || y % 6 && (x + (y / 6 | 0) % 2 * 6) % 12 && 80;
 
+M = Math;
 windows = [];
 for(i=72;i--;)
-    windows[i] = Math.random()*12<12-(i/6|0);
+    windows[i] = M.random()*12<12-(i/6|0);
 
 scrollx = 1;
 last = 2;
@@ -44,10 +45,10 @@ setInterval(e => {
         scrollx = mod(scrollx - !!keys[0]*4 + !!keys[2]*4);
 
         // update speed
-        sy = Math.max(-12, sy - 1);
+        sy = M.max(-12, sy - 1);
         if (keys[1] && magic)
             magic--,
-            sy = Math.max(-4, sy);
+            sy = M.max(-4, sy);
 
         // update position
         playery += sy;
@@ -65,8 +66,8 @@ setInterval(e => {
         lost |= scrolly - playery > 30;
 
         for (x=120;x--;) {
-            a = Math.acos(x/60%2-1);
-            xp = (1-a/Math.PI)*180|0;
+            a = M.acos(x/60%2-1);
+            xp = (1-a/M.PI)*180|0;
             for (y=160;y--;) {
                 color = 
                     between(playery, y+scrolly, playery + 24) && between(82, mod(xp), 98) && (w = wizard(mod(last?xp-83:99-xp),y+scrolly-playery))
@@ -76,8 +77,8 @@ setInterval(e => {
                         : scrolly < -y || scrolly + y > 750
                             ? 10
                             // tower
-                            : Math.sin(a) * 40 - 60 + tower(mod(xp+scrollx),y+scrolly);
-                d = Math.min(1, Math.max(0,2-Math.hypot(60-x, playery-y-scrolly+12)/12)) * magic;
+                            : M.sin(a) * 40 - 60 + tower(mod(xp+scrollx),y+scrolly);
+                d = M.min(1, M.max(0,2-M.hypot(60-x, playery-y-scrolly+12)/12)) * magic;
                 c.fillStyle = `hsl(${240+d|0},20%,${color+d/10|0}%)`;
                 c.fillRect(x*4,160*4-y*4,4,4);
             }
