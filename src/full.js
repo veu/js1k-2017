@@ -68,7 +68,7 @@ setInterval(e => {
         for (x=120;x--;) {
             a = M.acos(x/60%2-1);
             xp = (1-a/M.PI)*180|0;
-            for (y=160;y--;) {
+            for (y=160;y--;)
                 color = 
                     // player
                     between(playery, y+scrolly, playery + 24) && between(82, mod(xp), 98) && wizard(mod(last?xp-83:99-xp),y+scrolly-playery)
@@ -77,11 +77,10 @@ setInterval(e => {
                         ? 10
                         // tower
                         : M.sin(a) * 40 - 60 + tower(mod(xp+scrollx),y+scrolly)
-                    );
-                d = M.min(1, M.max(0,2-M.hypot(60-x, playery-y-scrolly+12)/12)) * magic;
-                c.fillStyle = `hsl(${240+d|0},20%,${color+d/10|0}%)`;
-                c.fillRect(x*4,160*4-y*4,4,4);
-            }
+                    ),
+                d = M.min(1, M.max(0,2-M.hypot(60-x, playery-y-scrolly+12)/12)) * magic,
+                c.fillStyle = `hsl(${240+d|0},20%,${color+d/10|0}%)`,
+                c.fillRect(x * 4, 640 - y * 4, 4, 4)
         }
     }
 }, 42)
