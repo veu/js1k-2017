@@ -71,7 +71,7 @@ setInterval(e => {
             for (y=160;y--;)
                 color = 
                     // player
-                    between(playery, y+scrolly, playery + 24) && between(82, mod(xp), 98) && wizard(mod(last?xp-83:99-xp),y+scrolly-playery)
+                    between(playery, y+scrolly, playery + 24) && between(82, xp, 98) && wizard(mod(last?xp-83:99-xp),y+scrolly-playery)
                     || (scrolly < -y || scrolly + y > 750
                         // sky / ground
                         ? 10
