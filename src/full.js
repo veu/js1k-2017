@@ -45,10 +45,7 @@ setInterval(e => {
         scrollx = mod(scrollx - !!keys[0]*4 + !!keys[2]*4);
 
         // update speed
-        sy = M.max(-12, sy - 1);
-        if (keys[1] && magic)
-            magic--,
-            sy = M.max(-4, sy);
+        sy > -(keys[1] && magic && magic-- ? 4 : 12) && sy--;
 
         // update position
         playery += sy;
