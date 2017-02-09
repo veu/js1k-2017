@@ -25,7 +25,7 @@ setInterval(e => {
 
     // update position
     playery += sy;
-    scrolly += playery - scrolly > 110 ? playery - scrolly - 110 : playery - scrolly < 5 ? playery - scrolly - 5 : 0;
+    scrolly += (y = playery - scrolly) > 110 ? y - 110 : y < 5 ? y - 5 : 0;
 
     // check tower top collision
     if (playery > 1228)
