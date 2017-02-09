@@ -26,15 +26,13 @@ tower = (x, y) =>
 M = Math;
 windows = [];
 
-for(i = 120; i--;)
+for(i = magic = 120; i--;)
     windows[i] = (i * 11 + i * 17) % 64 < 39 - i / 4;
-
 
 scrollx = 17;
 last = 2;
 scrolly = -20;
 playery = sy = move = lost = 0;
-magic = 180;
 
 keys = [];
 onkeydown = onkeyup = e => {
@@ -47,7 +45,7 @@ setInterval(e => {
         scrollx = mod(scrollx - !!keys[0]*4 + !!keys[2]*4);
 
         // update speed
-        sy > -(keys[1] && magic && magic-- ? 2 : 12) && sy--;
+        sy > -(keys[1] && magic && magic-- ? 3 : 12) && sy--;
 
         // update position
         playery += sy;
@@ -78,7 +76,7 @@ setInterval(e => {
                         : M.sin(a) * 40 - 60 + tower(mod(xp + scrollx), y + scrolly)
                     ),
                 d = M.min(1, M.max(0, 2 - M.hypot(60 - x, playery - y - scrolly + 12) / 12)) * magic,
-                c.fillStyle = `hsl(${240 + d | 0},20%,${color + d / 9 | 0}%`,
+                c.fillStyle = `hsl(${240 + d | 0},20%,${color + d / 6 | 0}%`,
                 c.fillRect(x * 4, 640 - y * 4, 4, 4)
         }
     }
