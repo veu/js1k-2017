@@ -2,8 +2,7 @@ mod = x => (x + 360) % 360;
 between = (x, y, z) => x < y && y < z;
 wall = (x, y) => y % 6 && (x + (y / 6 | 0) % 2 * 6) % 12 && (wall(x + 1, y) ? 80 : 60)
 
-M = Math;
-windows = [];
+windows = [M = Math];
 
 for(sy = magic = 120; playery = move = sy--;)
     windows[sy] = (sy * 11 + sy * 17) % 64 < 39 - sy / 4;
@@ -35,6 +34,7 @@ setInterval(e => {
 
     sy = playery > 0 ? sy : 12;
 
+    // draw
     for (x = 120; x--;) {
         a = M.acos(x / 60 % 2 - 1);
         xp = (1 - a / M.PI) * 180 | 0;
