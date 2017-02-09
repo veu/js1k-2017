@@ -1,12 +1,3 @@
-wizard = (x, y) =>
-    y < 0 | 47 - x < y * 2 | y < 20 - x * 3 & y > x * 5 - 4 | x * 2 > 37 - y & x + 4 > y
-        ? 0
-        : x + 7 - y
-            ? x * 2 > 30 - y & x + 4 > y
-                ? 99
-                : 9
-            : 30;
-
 mod = x => (x + 360) % 360;
 between = (x, y, z) => x < y && y < z;
 
@@ -62,7 +53,18 @@ setInterval(e => {
         for (y = 160; y--;)
             color = 
                 // player
-                between(playery, y + scrolly, playery + 24) & between(82, xp, 98) && wizard(mod(last ? xp - 83 : 99 - xp), y + scrolly - playery)
+                between(playery, y + scrolly, playery + 24) & between(82, xp, 98) && (
+                    e = mod(last ? xp - 83 : 99 - xp),
+                    f = y + scrolly - playery,
+                    f < 0 | 47 - e < f * 2 | f < 20 - e * 3 & f > e * 5 - 4 | e * 2 > 37 - f & e + 4 > f
+                        ? 0
+                        : e + 7 - f
+                            ? e * 2 > 30 - f & e + 4 > f
+                                ? 99
+                                : 9
+                            : 30
+                )
+                // world
                 || (scrolly < -y || scrolly + y > 1230
                     // sky / ground
                     ? 10

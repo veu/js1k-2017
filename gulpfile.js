@@ -48,7 +48,6 @@ gulp.task('minify', function () {
               'sy',
               'tower',
               'windows',
-              'wizard',
               'xx',
               'yy',
             ]
