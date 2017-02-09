@@ -1,9 +1,8 @@
 mod = x => (x + 360) % 360;
 between = (x, y, z) => x < y && y < z;
-wall = (x, y) => y % 6 && (x + (y / 6 | 0) % 2 * 6) % 12 && (wall(x + 1, y) ? 80 : 60)
+wall = (x, y) => between(0, y / 6 % 51, 1) ? 70 : y % 6 && (x + (y / 6 | 0) % 2 * 6) % 12 && (wall(x + 1, y) ? 80 : 60);
 
 windows = [M = Math];
-
 for(sy = magic = 120; playery = move = sy--;)
     windows[sy] = (sy * 11 + sy * 17) % 64 < 39 - sy / 4;
 
@@ -27,11 +26,16 @@ setInterval(e => {
     playery += sy;
     scrolly += playery - scrolly > 110 ? playery - scrolly - 110 : playery - scrolly < 5 ? playery - scrolly - 5 : 0;
 
-    // check collision
+    // check tower top collision
+    if (playery > 1228)
+        playery = 1230, sy = 0;
+
+    // check window collision
     if (sy < 0 & windows[(playery / 60 | 0) * 6 + mod(98 + scrollx) / 60 | 0] & between(sy, playery % 60 - 31, 0) & between(0, 52 - (scrollx + 38) % 60, 52))
         playery += 30 - playery % 30,
         sy = 12;
 
+    // check ground collision
     sy = playery > 0 ? sy : 12;
 
     // draw
