@@ -1,5 +1,6 @@
 mod = x => (x + 360) % 360;
 between = (x, y, z) => x < y && y < z;
+wall = (x, y) => y % 6 && (x + (y / 6 | 0) % 2 * 6) % 12 && (wall(x + 1, y) ? 80 : 60)
 
 M = Math;
 windows = [];
@@ -67,7 +68,9 @@ setInterval(e => {
                                     between(24, f % 60, 30) & between(0, e % 60, 36)
                                         ? 90
                                         : between(30, f % 60, 54) & between(6, e % 60, 30)
-                                ) || f % 6 && (e + (f / 6 | 0) % 2 * 6) % 12 && 80
+                                )
+                                // wall
+                                || wall(e, f)
                     )
                 ),
             d = M.min(1, M.max(0, 2 - M.hypot(60 - x, playery - y - scrolly + 12) / 12)) * magic,
