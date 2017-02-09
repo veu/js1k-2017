@@ -21,7 +21,7 @@ setInterval(e => {
     scrollx = mod(scrollx - !!keys[0]*4 + !!keys[2]*4);
 
     // update speed
-    sy > -(keys[1] && magic && magic-- ? 3 : 12) && sy--;
+    sy > -(keys[1] && magic && magic-- ? 3 : 10) && sy--;
 
     // update position
     playery += sy;
@@ -33,11 +33,11 @@ setInterval(e => {
 
     // check window collision
     if (sy < 0 & windows[div60(playery) * 6 + div60(mod(98 + scrollx))] & between(sy, playery % 60 - 31, 0) & between(0, 52 - (scrollx + 38) % 60, 52))
-        playery += 30 - playery % 30,
-        sy = 12;
+        playery += 30 - playery % 60,
+        sy = 14;
 
     // check ground collision
-    sy = playery > 0 ? sy : 12;
+    sy = playery > 0 ? sy : 14;
 
     // draw
     for (x = 120; x--;) {
