@@ -14,7 +14,7 @@ tower = (x, y) =>
     // door
     between(18, y, 20) & between(130, x, 133)
         ? 20
-        : y < 36 & between(126, x, 150)
+        : y && y < 42 & between(126, x, 150)
             ? 40
             // windows
             : windows[(y / 60 | 0) * 6 + x / 60 | 0] && (
@@ -26,13 +26,12 @@ tower = (x, y) =>
 M = Math;
 windows = [];
 
-for(i = magic = 120; i--;)
-    windows[i] = (i * 11 + i * 17) % 64 < 39 - i / 4;
+for(sy = magic = 120; playery = move = lost = sy--;)
+    windows[sy] = (sy * 11 + sy * 17) % 64 < 39 - sy / 4;
 
 scrollx = 17;
 last = 2;
 scrolly = -20;
-playery = sy = move = lost = 0;
 
 keys = [];
 onkeydown = onkeyup = e => {
