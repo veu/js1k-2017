@@ -47,6 +47,7 @@ gulp.task('minify', function () {
               'scrolly',
               'sy',
               'wall',
+              'win',
               'windows',
               'xx',
               'yy',
