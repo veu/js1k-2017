@@ -35,6 +35,7 @@ gulp.task('minify', function () {
             namesToReplace: [
               'between',
               'color',
+              'div60',
               'key',
               'keys',
               'last',
@@ -48,9 +49,7 @@ gulp.task('minify', function () {
               'sy',
               'wall',
               'win',
-              'windows',
-              'xx',
-              'yy',
+              'windows'
             ]
           }
         ] 

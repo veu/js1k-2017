@@ -1,10 +1,11 @@
 mod = x => (x + 360) % 360;
 between = (x, y, z) => x < y && y < z;
 wall = (x, y) => between(0, y / 6 % 51, 1) ? 70 : y % 6 && (x + (y / 6 | 0) % 2 * 6) % 12 && (wall(x + 1, y) ? 80 : 60);
+div60 = x => x / 60 | 0;
 
 windows = [M = Math];
 for(sy = magic = 120; playery = move = win = sy--;)
-    windows[sy] = (sy * 11 + sy * 17) % 64 < 39 - sy / 4;
+    windows[sy] = sy * 28 % 64 < 39 - sy / 4;
 
 scrollx = 17;
 last = 2;
@@ -31,7 +32,7 @@ setInterval(e => {
         playery = 1230, sy = 0, win++;
 
     // check window collision
-    if (sy < 0 & windows[(playery / 60 | 0) * 6 + mod(98 + scrollx) / 60 | 0] & between(sy, playery % 60 - 31, 0) & between(0, 52 - (scrollx + 38) % 60, 52))
+    if (sy < 0 & windows[div60(playery) * 6 + div60(mod(98 + scrollx))] & between(sy, playery % 60 - 31, 0) & between(0, 52 - (scrollx + 38) % 60, 52))
         playery += 30 - playery % 30,
         sy = 12;
 
@@ -72,7 +73,7 @@ setInterval(e => {
                                     : f && f < 42 & between(126, e, 150)
                                         ? 40
                                         // windows
-                                        : windows[(f / 60 | 0) * 6 + e / 60 | 0] && (
+                                        : windows[div60(f) * 6 + div60(e)] && (
                                             between(24, f % 60, 30) & between(0, e % 60, 36)
                                                 ? 90
                                                 : between(30, f % 60, 54) & between(6, e % 60, 30)
