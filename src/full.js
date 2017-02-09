@@ -1,19 +1,6 @@
 mod = x => (x + 360) % 360;
 between = (x, y, z) => x < y && y < z;
 
-tower = (x, y) =>
-    // door
-    between(18, y, 20) & between(130, x, 133)
-        ? 20
-        : y && y < 42 & between(126, x, 150)
-            ? 40
-            // windows
-            : windows[(y / 60 | 0) * 6 + x / 60 | 0] && (
-                between(24, y % 60, 30) & between(0, x % 60, 36)
-                    ? 90
-                    : between(30, y % 60, 54) & between(6, x % 60, 30)
-            ) || y % 6 && (x + (y / 6 | 0) % 2 * 6) % 12 && 80;
-
 M = Math;
 windows = [];
 
@@ -69,7 +56,19 @@ setInterval(e => {
                     // sky / ground
                     ? 10
                     // tower
-                    : M.sin(a) * 40 - 60 + tower(mod(xp + scrollx), y + scrolly)
+                    : M.sin(a) * 40 - 60 + (
+                        // door
+                        between(18, f = y + scrolly, 20) & between(130, e = mod(xp + scrollx), 133)
+                            ? 20
+                            : f && f < 42 & between(126, e, 150)
+                                ? 40
+                                // windows
+                                : windows[(f / 60 | 0) * 6 + e / 60 | 0] && (
+                                    between(24, f % 60, 30) & between(0, e % 60, 36)
+                                        ? 90
+                                        : between(30, f % 60, 54) & between(6, e % 60, 30)
+                                ) || f % 6 && (e + (f / 6 | 0) % 2 * 6) % 12 && 80
+                    )
                 ),
             d = M.min(1, M.max(0, 2 - M.hypot(60 - x, playery - y - scrolly + 12) / 12)) * magic,
             c.fillStyle = `hsl(${240 + d | 0},20%,${color + d / 6 | 0}%`,
