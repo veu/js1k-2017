@@ -55,7 +55,7 @@ setInterval(e => {
             scrolly += sy;
 
         // check collision
-        if (sy < 0 & windows[(playery / 60 | 0) * 6 + mod(98 + scrollx) / 60 | 0] & playery % 60 <= 30 & 30 <= playery % 60 - sy & between(0, 52 - (scrollx + 38) % 60, 52))
+        if (sy < 0 & windows[(playery / 60 | 0) * 6 + mod(98 + scrollx) / 60 | 0] & between(sy, playery % 60 - 31, 0) & between(0, 52 - (scrollx + 38) % 60, 52))
             playery += 30 - playery % 30,
             sy = 12;
 
