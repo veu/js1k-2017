@@ -21,7 +21,7 @@ setInterval(e => {
     scrollx = mod(scrollx - !!keys[0]*4 + !!keys[2]*4);
 
     // update speed
-    sy > -(keys[1] && magic && magic-- ? 3 : 10) && sy--;
+    sy = -M.min(keys[1] && magic && magic-- ? 5 : 10, 1 - sy);
 
     // update position
     playery += sy;
