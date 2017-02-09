@@ -28,8 +28,8 @@ setInterval(e => {
     scrolly += (y = playery - scrolly) > 110 ? y - 110 : y < 5 ? y - 5 : 0;
 
     // check tower top collision
-    if (playery > 1228)
-        playery = 1230, sy = 0, win++;
+    if (win = playery > 1228)
+        playery = keys[2] = 1230, sy = 0;
 
     // check window collision
     if (sy < 0 & windows[div60(playery) * 6 + div60(mod(98 + scrollx))] & between(sy, playery % 60 - 31, 0) & between(0, 52 - (scrollx + 38) % 60, 52))
@@ -64,7 +64,7 @@ setInterval(e => {
                         ? 9 + y + scrolly
                         : scrolly + y > 1230
                             // sky
-                            ? win ? M.atan2(120 - y, x - 60) * 8 - win/9*M.PI & 1 && 40 : 10
+                            ? win ? M.atan2(120 - y, x - 60) * 8 + scrollx/9*M.PI & 1 && 40 : 10
                             // tower
                             : M.sin(a) * 40 - 60 + (
                                 // door
