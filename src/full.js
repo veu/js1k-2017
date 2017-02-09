@@ -53,25 +53,29 @@ setInterval(e => {
                             : 30
                 )
                 // world
-                || (scrolly < -y || scrolly + y > 1230
-                    // sky / ground
-                    ? 10
-                    // tower
-                    : M.sin(a) * 40 - 60 + (
-                        // door
-                        between(18, f = y + scrolly, 20) & between(130, e = mod(xp + scrollx), 133)
-                            ? 20
-                            : f && f < 42 & between(126, e, 150)
-                                ? 40
-                                // windows
-                                : windows[(f / 60 | 0) * 6 + e / 60 | 0] && (
-                                    between(24, f % 60, 30) & between(0, e % 60, 36)
-                                        ? 90
-                                        : between(30, f % 60, 54) & between(6, e % 60, 30)
-                                )
-                                // wall
-                                || wall(e, f)
-                    )
+                || (
+                    scrolly < -y
+                        // ground
+                        ? (y+x&1) * 7 + y
+                        : scrolly + y > 1230
+                            // sky
+                            ? 10
+                            // tower
+                            : M.sin(a) * 40 - 60 + (
+                                // door
+                                between(18, f = y + scrolly, 20) & between(130, e = mod(xp + scrollx), 133)
+                                    ? 20
+                                    : f && f < 42 & between(126, e, 150)
+                                        ? 40
+                                        // windows
+                                        : windows[(f / 60 | 0) * 6 + e / 60 | 0] && (
+                                            between(24, f % 60, 30) & between(0, e % 60, 36)
+                                                ? 90
+                                                : between(30, f % 60, 54) & between(6, e % 60, 30)
+                                        )
+                                        // wall
+                                        || wall(e, f)
+                            )
                 ),
             d = M.min(1, M.max(0, 2 - M.hypot(60 - x, playery - y - scrolly + 12) / 12)) * magic,
             c.fillStyle = `hsl(${240 + d | 0},20%,${color + d / 6 | 0}%`,
