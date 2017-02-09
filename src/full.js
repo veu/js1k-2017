@@ -12,9 +12,9 @@ between = (x, y, z) => x < y && y < z;
 
 tower = (x, y) =>
     // door
-    between(18, y, 22) & between(90, x, 94)
+    between(18, y, 20) & between(130, x, 133)
         ? 20
-        : y < 36 & between(84, x, 108)
+        : y < 36 & between(126, x, 150)
             ? 40
             // windows
             : windows[(y / 60 | 0) * 6 + x / 60 | 0] && (
@@ -27,9 +27,10 @@ M = Math;
 windows = [];
 
 for(i = 120; i--;)
-    windows[i] = (x = M.sin(i-5) * 1e4) - M.floor(x) < .5 - i / 540;
+    windows[i] = (i * 11 + i * 17) % 64 < 39 - i / 4;
 
-scrollx = 1;
+
+scrollx = 17;
 last = 2;
 scrolly = -20;
 playery = sy = move = lost = 0;
