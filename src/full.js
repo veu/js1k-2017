@@ -4,7 +4,7 @@ wall = (x, y) => between(0, y / 6 % 51, 1) ? 70 : y % 6 && (x + (y / 6 | 0) % 2
 div60 = x => x / 60 | 0;
 
 windows = [M = Math];
-for(sy = magic = 120; playery = move = win = sy--;)
+for(sy = magic = 120; playery = win = sy--;)
     windows[sy] = sy * 28 % 64 < 39 - sy / 4;
 
 min = M.min;
