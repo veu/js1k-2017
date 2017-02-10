@@ -7,6 +7,7 @@ windows = [M = Math];
 for(sy = magic = 120; playery = move = win = sy--;)
     windows[sy] = sy * 28 % 64 < 39 - sy / 4;
 
+min = M.min;
 scrollx = 17;
 last = 2;
 scrolly = -20;
@@ -21,7 +22,7 @@ setInterval(e => {
     scrollx = mod(scrollx - !!keys[0]*4 + !!keys[2]*4);
 
     // update speed
-    sy = -M.min(keys[1] && magic && magic-- ? 5 : 10, 1 - sy);
+    sy = -min(keys[1] && magic && magic-- ? 5 : 10, 1 - sy);
 
     // update position
     playery += sy;
@@ -80,7 +81,7 @@ setInterval(e => {
                                     || wall(e, f)
                             )
                 ),
-            d = M.min(1, M.max(0, 2 - M.hypot(60 - x, playery - y - scrolly + 12) / 12)) * magic,
+            d = min(1, -min(0, M.hypot(60 - x, playery - y - scrolly + 12) / 12 - 2)) * magic,
             c.fillStyle = `hsl(${240 + d | 0},20%,${color + d / 6 | 0}%`,
             c.fillRect(x * 4, 640 - y * 4, 4, 4)
 }, 42)

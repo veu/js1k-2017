@@ -41,6 +41,7 @@ gulp.task('minify', function () {
               'last',
               'lost',
               'magic',
+              'min',
               'mod',
               'move',
               'playery',

@@ -19,6 +19,10 @@ module.exports = function({types: t}) {
 
   const replaceVariableNamesVisitor = {
     Identifier(path) {
+      if (path.key === 'property' && !path.parent.computed) {
+        return;
+      }
+
       if (this.variableMap.has(path.node.name)) {
         path.replaceWith(t.Identifier(this.variableMap.get(path.node.name)));
       }
