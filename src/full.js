@@ -78,7 +78,7 @@ setInterval(e => {
                         ? win ? M.atan2(120 - y, x - i60) * 8 + scrollx/9*M.PI & 1 && 40 : 10
                         // tower
                         : M.sin(a = M.acos(x / i60 % 2 - 1)) * 40 - i60 + tower[mod((1 - a / M.PI) * 180 + scrollx | 0)][y + scrolly],
-            d = min(1, -min(0, M.hypot(i60 - x, playery - y - scrolly + 12) / 12 - 2)) * magic,
+            d = min(1, -min(0, M.hypot(i60 - x, 12 - f) / 12 - 2)) * magic,
             c.fillStyle = `hsl(${240 + d},25%,${color + d / 6}%)`,
             c.fillRect(x * 4, 640 - y * 4, 4, 4)
     })(120)
