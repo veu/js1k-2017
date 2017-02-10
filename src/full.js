@@ -8,7 +8,7 @@ for(sy = magic = 120; playery = win = sy--;)
     windows[sy] = sy * 28 % 64 < 39 - sy / 4;
 
 for (tower = [e = 360]; e--;)
-    for (tower[e] = [f = top = 1230]; f--;)
+    for (tower[e] = [f = top = 1231]; f--;)
         tower[e][f] =
             f && f < 42 & between(126, e, 150)
                 // door
