@@ -29,10 +29,10 @@ min = M.min;
 scrolly = -20;
 
 keys = [];
-onkeydown = onkeyup = e => keys[key = e.which - 37] = e.type[5];
+onkeydown = onkeyup = e => keys[key = 39 - e.which] = e.type[5];
 
 setInterval(e => {
-    dir = !keys[0] - !keys[2];
+    dir = !keys[2] - !keys[0];
     scrollx = mod(scrollx + dir * 4);
 
     // update speed
@@ -44,7 +44,7 @@ setInterval(e => {
 
     // check tower top collision
     if (win = playery > 1228)
-        playery = keys[2] = top, sy = 0;
+        playery = keys[sy = 0] = top;
 
     // check window collision
     if (windows[div60(playery) * 6 + div60(mod(98 + scrollx))] & between(sy, playery % i60 - i30, 1) & between(0, (scrollx + 38) % i60, 52))
