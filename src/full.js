@@ -68,18 +68,16 @@ setInterval(e => {
                             // tower
                             : M.sin(a) * 40 - 60 + (
                                 // door
-                                between(18, f = y + scrolly, 20) & between(130, e = mod(xp + scrollx), 133)
-                                    ? 20
-                                    : f && f < 42 & between(126, e, 150)
-                                        ? 40
-                                        // windows
-                                        : windows[div60(f) * 6 + div60(e)] && (
-                                            between(24, f % 60, 30) & between(0, e % 60, 36)
-                                                ? 90
-                                                : between(30, f % 60, 54) & between(6, e % 60, 30)
-                                        )
-                                        // wall
-                                        || wall(e, f)
+                                (e = mod(xp + scrollx), f = y + scrolly) && f < 42 & between(126, e, 150)
+                                    ? 40
+                                    // windows
+                                    : windows[div60(f) * 6 + div60(e)] && (
+                                        between(24, f % 60, 30) & between(0, e % 60, 36)
+                                            ? 90
+                                            : between(30, f % 60, 54) & between(6, e % 60, 30)
+                                    )
+                                    // wall
+                                    || wall(e, f)
                             )
                 ),
             d = M.min(1, M.max(0, 2 - M.hypot(60 - x, playery - y - scrolly + 12) / 12)) * magic,
