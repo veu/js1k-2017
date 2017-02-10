@@ -8,7 +8,6 @@ for(sy = magic = 120; playery = win = sy--;)
     windows[sy] = sy * 28 % 64 < 39 - sy / 4;
 
 min = M.min;
-scrollx = 17;
 last = 2;
 scrolly = -20;
 
@@ -84,4 +83,4 @@ setInterval(e => {
             d = min(1, -min(0, M.hypot(60 - x, playery - y - scrolly + 12) / 12 - 2)) * magic,
             c.fillStyle = `hsl(${240 + d | 0},20%,${color + d / 6 | 0}%`,
             c.fillRect(x * 4, 640 - y * 4, 4, 4)
-}, 42)
+}, scrollx = 42)
