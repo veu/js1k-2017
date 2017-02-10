@@ -2,7 +2,7 @@ i30 = 30;
 i60 = 60;
 
 mod = x => (x + i360) % i360;
-between = (x, y, z) => x < y && y < z;
+between = (x, y, z) => x < y & y < z;
 wall = (x, y) => between(0, y / 6 % 51, 1) ? 70 : y % 6 && (x + (y / 6 | 0) % 2 * 6) % 12 && (wall(x + 1, y) ? 80 : i60);
 div60 = x => x / i60 | 0;
 
@@ -29,9 +29,7 @@ min = M.min;
 scrolly = -20;
 
 keys = [];
-onkeydown = onkeyup = e => {
-    keys[key = e.which - 37] = e.type[5]
-}
+onkeydown = onkeyup = e => keys[key = e.which - 37] = e.type[5];
 
 setInterval(e => {
     dir = !keys[0] - !keys[2];
