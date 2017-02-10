@@ -13,7 +13,7 @@ for(sy = magic = 120; playery = win = sy--;)
 for (tower = [e = i360 = 360]; e--;)
     for (tower[e] = [f = top = 1231]; f--;)
         tower[e][f] =
-            f && f < 42 & between(126, e, 150)
+            f < 42 & between(126, e, 150)
                 // door
                 ? 40 - e % 3
                 // windows
@@ -49,7 +49,7 @@ setInterval(e => {
         playery = keys[2] = top, sy = 0;
 
     // check window collision
-    if (sy < 0 & windows[div60(playery) * 6 + div60(mod(98 + scrollx))] & between(sy, playery % i60 - i30, 1) & between(0, (scrollx + 38) % i60, 52))
+    if (windows[div60(playery) * 6 + div60(mod(98 + scrollx))] & between(sy, playery % i60 - i30, 1) & between(0, (scrollx + 38) % i60, 52))
         playery += i30 - playery % i60,
         sy = 14;
 
