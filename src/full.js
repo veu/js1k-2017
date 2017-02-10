@@ -7,6 +7,21 @@ windows = [M = Math];
 for(sy = magic = 120; playery = win = sy--;)
     windows[sy] = sy * 28 % 64 < 39 - sy / 4;
 
+for (tower = [e = 360]; e--;)
+    for (tower[e] = [f = top = 1230]; f--;)
+        tower[e][f] =
+            f && f < 42 & between(126, e, 150)
+                // door
+                ? 40 - e % 2 * 3
+                // windows
+                : windows[div60(f) * 6 + div60(e)] && (
+                    between(24, f % 60, 30) & between(0, e % 60, 36)
+                        ? 90
+                        : between(30, f % 60, 54) & between(6, e % 60, 30)
+                )
+                // wall
+                || wall(e, f);
+
 min = M.min;
 last = 2;
 scrolly = -20;
@@ -29,7 +44,7 @@ setInterval(e => {
 
     // check tower top collision
     if (win = playery > 1228)
-        playery = keys[2] = 1230, sy = 0;
+        playery = keys[2] = top, sy = 0;
 
     // check window collision
     if (sy < 0 & windows[div60(playery) * 6 + div60(mod(98 + scrollx))] & between(sy, playery % 60 - 30, 1) & between(0, (scrollx + 38) % 60, 52))
@@ -62,23 +77,11 @@ setInterval(e => {
                     scrolly < -y
                         // ground
                         ? 9 + y + scrolly
-                        : scrolly + y > 1230
+                        : scrolly + y > top
                             // sky
                             ? win ? M.atan2(120 - y, x - 60) * 8 + scrollx/9*M.PI & 1 && 40 : 10
                             // tower
-                            : M.sin(a) * 40 - 60 + (
-                                // door
-                                (e = mod(xp + scrollx), f = y + scrolly) && f < 42 & between(126, e, 150)
-                                    ? 40 - x % 2 * 3
-                                    // windows
-                                    : windows[div60(f) * 6 + div60(e)] && (
-                                        between(24, f % 60, 30) & between(0, e % 60, 36)
-                                            ? 90
-                                            : between(30, f % 60, 54) & between(6, e % 60, 30)
-                                    )
-                                    // wall
-                                    || wall(e, f)
-                            )
+                            : M.sin(a) * 40 - 60 + tower[mod(xp + scrollx)][y + scrolly]
                 ),
             d = min(1, -min(0, M.hypot(60 - x, playery - y - scrolly + 12) / 12 - 2)) * magic,
             c.fillStyle = `hsl(${240 + d | 0},20%,${color + d / 6 | 0}%`,

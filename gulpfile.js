@@ -46,6 +46,8 @@ gulp.task('minify', function () {
               'scrollx',
               'scrolly',
               'sy',
+              'top',
+              'tower',
               'wall',
               'win',
               'windows'
