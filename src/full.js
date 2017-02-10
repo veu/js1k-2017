@@ -62,7 +62,7 @@ setInterval(e => {
             z = scrolly + y,
             color =
                 // player
-                between(0, f = z - playery, 24) & between(52, x, 68) & !(f < 0 | 47 - e < f * 2 | f < 20 - e * 3 & f > e * 5 - 4 | e * 2 > 37 - f & e + 4 > f)
+                between(0, f = z - playery + M.sin(x/2)*(14-M.abs(sy))/8|0, 24) & between(52, x, 68) & !(f < 0 | 47 - e < f * 2 | f < 20 - e * 3 & f > e * 5 - 4 | e * 2 > 37 - f & e + 4 > f)
                     ? e + 7 - f
                         ? e * 2 > 30 - f & e + 4 > f
                             ? 99
@@ -77,7 +77,7 @@ setInterval(e => {
                         ? win ? M.atan2(120 - y, x - i60) * 8 + scrollx/9*M.PI & 1 && 40 : 10
                         // tower
                         : M.sin(a = M.acos(x / i60 % 2 - 1)) * 40 - i60 + tower[mod((1 - a / M.PI) * 180 + scrollx | 0)][z],
-            d = min(1, -min(0, M.hypot(i60 - x, 12 - f) / 12 - 2)) * magic,
+            d = min(1, -min(0, M.hypot(i60 - x, 12 - z + playery) / 12 - 2)) * magic,
             c.fillStyle = `hsl(${240 + d},25%,${color + d / 6}%)`
     })(120)
 }, scrollx = 42)
