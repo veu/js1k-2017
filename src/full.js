@@ -69,7 +69,7 @@ setInterval(e => {
                             : M.sin(a) * 40 - 60 + (
                                 // door
                                 (e = mod(xp + scrollx), f = y + scrolly) && f < 42 & between(126, e, 150)
-                                    ? 40
+                                    ? 40 - x % 2 * 3
                                     // windows
                                     : windows[div60(f) * 6 + div60(e)] && (
                                         between(24, f % 60, 30) & between(0, e % 60, 36)
