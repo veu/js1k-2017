@@ -58,32 +58,27 @@ setInterval(e => {
     for (x = 120; x--;)
         for (a = M.acos(x / 60 % 2 - 1),
              xp = (1 - a / M.PI) * 180 | 0,
+             e = mod(last ? xp - 83 : 99 - xp),
              y = 160; y--;)
-            color = 
+            f = y + scrolly - playery,
+            color =
                 // player
-                between(playery, y + scrolly, playery + 24) & between(82, xp, 98) && (
-                    e = mod(last ? xp - 83 : 99 - xp),
-                    f = y + scrolly - playery,
-                    f < 0 | 47 - e < f * 2 | f < 20 - e * 3 & f > e * 5 - 4 | e * 2 > 37 - f & e + 4 > f
-                        ? 0
-                        : e + 7 - f
-                            ? e * 2 > 30 - f & e + 4 > f
-                                ? 99
-                                : 9
-                            : 30
-                )
+                between(playery, y + scrolly, playery + 24) & between(82, xp, 98) && !(f < 0 | 47 - e < f * 2 | f < 20 - e * 3 & f > e * 5 - 4 | e * 2 > 37 - f & e + 4 > f)
+                    ? e + 7 - f
+                        ? e * 2 > 30 - f & e + 4 > f
+                            ? 99
+                            : 9
+                        : 30
                 // world
-                || (
-                    scrolly < -y
-                        // ground
-                        ? 9 + y + scrolly
-                        : scrolly + y > top
-                            // sky
-                            ? win ? M.atan2(120 - y, x - 60) * 8 + scrollx/9*M.PI & 1 && 40 : 10
-                            // tower
-                            : M.sin(a) * 40 - 60 + tower[mod(xp + scrollx)][y + scrolly]
-                ),
+                : scrolly < -y
+                    // ground
+                    ? 9 + y + scrolly
+                    : scrolly + y > top
+                        // sky
+                        ? win ? M.atan2(120 - y, x - 60) * 8 + scrollx/9*M.PI & 1 && 40 : 10
+                        // tower
+                        : M.sin(a) * 40 - 60 + tower[mod(xp + scrollx)][y + scrolly],
             d = min(1, -min(0, M.hypot(60 - x, playery - y - scrolly + 12) / 12 - 2)) * magic,
-            c.fillStyle = `hsl(${240 + d | 0},20%,${color + d / 6 | 0}%`,
+            c.fillStyle = `hsl(${240 + d},20%,${color + d / 6}%`,
             c.fillRect(x * 4, 640 - y * 4, 4, 4)
 }, scrollx = 42)
