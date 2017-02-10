@@ -1,7 +1,9 @@
+i60 = 60;
+
 mod = x => (x + 360) % 360;
 between = (x, y, z) => x < y && y < z;
-wall = (x, y) => between(0, y / 6 % 51, 1) ? 70 : y % 6 && (x + (y / 6 | 0) % 2 * 6) % 12 && (wall(x + 1, y) ? 80 : 60);
-div60 = x => x / 60 | 0;
+wall = (x, y) => between(0, y / 6 % 51, 1) ? 70 : y % 6 && (x + (y / 6 | 0) % 2 * 6) % 12 && (wall(x + 1, y) ? 80 : i60);
+div60 = x => x / i60 | 0;
 
 windows = [M = Math];
 for(sy = magic = 120; playery = win = sy--;)
@@ -15,9 +17,9 @@ for (tower = [e = 360]; e--;)
                 ? 40 - e % 3
                 // windows
                 : windows[div60(f) * 6 + div60(e)] && (
-                    between(24, f % 60, 30) & between(0, e % 60, 36)
+                    between(24, f % i60, 30) & between(0, e % i60, 36)
                         ? 90
-                        : between(30, f % 60, 54) & between(6, e % 60, 30)
+                        : between(30, f % i60, 54) & between(6, e % i60, 30)
                 )
                 // wall
                 || wall(e, f);
@@ -46,8 +48,8 @@ setInterval(e => {
         playery = keys[2] = top, sy = 0;
 
     // check window collision
-    if (sy < 0 & windows[div60(playery) * 6 + div60(mod(98 + scrollx))] & between(sy, playery % 60 - 30, 1) & between(0, (scrollx + 38) % 60, 52))
-        playery += 30 - playery % 60,
+    if (sy < 0 & windows[div60(playery) * 6 + div60(mod(98 + scrollx))] & between(sy, playery % i60 - 30, 1) & between(0, (scrollx + 38) % i60, 52))
+        playery += 30 - playery % i60,
         sy = 14;
 
     // check ground collision
@@ -73,10 +75,10 @@ setInterval(e => {
                     ? 9 + y + scrolly
                     : scrolly + y > top
                         // sky
-                        ? win ? M.atan2(120 - y, x - 60) * 8 + scrollx/9*M.PI & 1 && 40 : 10
+                        ? win ? M.atan2(120 - y, x - i60) * 8 + scrollx/9*M.PI & 1 && 40 : 10
                         // tower
-                        : M.sin(a = M.acos(x / 60 % 2 - 1)) * 40 - 60 + tower[mod((1 - a / M.PI) * 180 + scrollx | 0)][y + scrolly],
-            d = min(1, -min(0, M.hypot(60 - x, playery - y - scrolly + 12) / 12 - 2)) * magic,
+                        : M.sin(a = M.acos(x / i60 % 2 - 1)) * 40 - i60 + tower[mod((1 - a / M.PI) * 180 + scrollx | 0)][y + scrolly],
+            d = min(1, -min(0, M.hypot(i60 - x, playery - y - scrolly + 12) / 12 - 2)) * magic,
             c.fillStyle = `hsl(${240 + d},25%,${color + d / 6}%)`,
             c.fillRect(x * 4, 640 - y * 4, 4, 4)
     })(120)
