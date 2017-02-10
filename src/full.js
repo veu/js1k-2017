@@ -54,8 +54,9 @@ setInterval(e => {
     // check ground collision
     sy = playery > 0 ? sy : 14;
 
+    (x => {
     // draw
-    for (x = 120; x--;)
+    for (; x--;)
         for (e = mod(last ? x - 53 : 69 - x),
              y = 160; y--;)
             f = y + scrolly - playery,
@@ -79,4 +80,5 @@ setInterval(e => {
             d = min(1, -min(0, M.hypot(60 - x, playery - y - scrolly + 12) / 12 - 2)) * magic,
             c.fillStyle = `hsl(${240 + d},20%,${color + d / 6}%`,
             c.fillRect(x * 4, 640 - y * 4, 4, 4)
+    })(120)
 }, scrollx = 42)
