@@ -32,7 +32,7 @@ setInterval(e => {
         playery = keys[2] = 1230, sy = 0;
 
     // check window collision
-    if (sy < 0 & windows[div60(playery) * 6 + div60(mod(98 + scrollx))] & between(sy, playery % 60 - 31, 0) & between(0, (scrollx + 38) % 60, 52))
+    if (sy < 0 & windows[div60(playery) * 6 + div60(mod(98 + scrollx))] & between(sy, playery % 60 - 32, 0) & between(0, (scrollx + 38) % 60, 52))
         playery += 30 - playery % 60,
         sy = 14;
 
