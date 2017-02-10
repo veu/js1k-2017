@@ -35,10 +35,10 @@ gulp.task('minify', function () {
             namesToReplace: [
               'between',
               'color',
+              'dir',
               'div60',
               'key',
               'keys',
-              'last',
               'magic',
               'min',
               'mod',

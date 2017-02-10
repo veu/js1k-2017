@@ -23,17 +23,16 @@ for (tower = [e = 360]; e--;)
                 || wall(e, f);
 
 min = M.min;
-last = 2;
 scrolly = -20;
 
 keys = [];
 onkeydown = onkeyup = e => {
-    keys[key = e.which - 37] = e.type[5];
-    last = key % 2 ? last : key
+    keys[key = e.which - 37] = e.type[5]
 }
 
 setInterval(e => {
-    scrollx = mod(scrollx - !!keys[0]*4 + !!keys[2]*4);
+    dir = !!keys[2]*4 - !!keys[0]*4;
+    scrollx = mod(scrollx + dir);
 
     // update speed
     sy = -min(keys[1] && magic && magic-- ? 5 : 10, 1 - sy);
@@ -57,7 +56,7 @@ setInterval(e => {
     (x => {
     // draw
     for (; x--;)
-        for (e = mod(last ? x - 53 : 69 - x),
+        for (e = mod(dir < 0 ? 69 - x : x - 53),
              y = 160; y--;)
             f = y + scrolly - playery,
             color =
