@@ -61,7 +61,7 @@ setInterval(e => {
             f = y + scrolly - playery,
             color =
                 // player
-                between(playery, y + scrolly, playery + 24) & between(52, x, 68) && !(f < 0 | 47 - e < f * 2 | f < 20 - e * 3 & f > e * 5 - 4 | e * 2 > 37 - f & e + 4 > f)
+                between(playery, y + scrolly, playery + 24) & between(52, x, 68) & !(f < 0 | 47 - e < f * 2 | f < 20 - e * 3 & f > e * 5 - 4 | e * 2 > 37 - f & e + 4 > f)
                     ? e + 7 - f
                         ? e * 2 > 30 - f & e + 4 > f
                             ? 99
