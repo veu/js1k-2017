@@ -56,29 +56,31 @@ setInterval(e => {
     // check ground collision
     sy = playery > 0 ? sy : 14;
 
-    (x => {
     // draw
-    for (; x--;)
-        for (e = mod(~dir ? x - 53 : 69 - x), y = 160; y--; c.fillRect(x * 4, 640 - y * 4, 4, 4))
-            z = scrolly + y,
-            color =
-                // player
-                between(0, f = z - playery + !win * M.sin(x/2)*(14-M.abs(sy))/8|0, 24) & between(52, x, 68) & !(f < 0 | 47 - e < f * 2 | f < 20 - e * 3 & f > e * 5 - 4 | e * 2 > 37 - f & e + 4 > f)
-                    ? e + 7 - f
-                        ? e * 2 > i30 - f & e + 4 > f
-                            ? 99
-                            : 9
-                        : i30
-                // world
-                : z < 0
-                    // ground
-                    ? 9 + z
-                    : z > top
-                        // sky
-                        ? win ? M.atan2(120 - y, x - i60) * 8 + scrollx/9*M.PI & 1 && 40 : 10
-                        // tower
-                        : M.sin(a = M.acos(x / i60 % 2 - 1)) * 40 - i60 + tower[mod((1 - a / M.PI) * 180 + scrollx | 0)][z],
-            d = min(1, -min(0, M.hypot(i60 - x, 12 - z + playery) / 12 - 2)) * magic,
-            c.fillStyle = `hsl(${240 + d},25%,${color + d / 6}%)`
+    (x => {
+        for (; x--;)
+            for (e = mod(~dir ? x - 53 : 69 - x), y = 160; y--; c.fillRect(x * 4, 640 - y * 4, 4, 4))
+                z = scrolly + y,
+                color =
+                    // player
+                    between(0, f = z - playery + !win * M.sin(x/2)*(14-M.abs(sy))/8|0, 24) & between(52, x, 68) & !(f < 0 | 47 - e < f * 2 | f < 20 - e * 3 & f > e * 5 - 4 | e * 2 > 37 - f & e + 4 > f)
+                        ? e + 7 - f
+                            ? e * 2 > i30 - f & e + 4 > f
+                                ? 99
+                                : 9
+                            : i30
+                    // world
+                    : z < 0
+                        // ground
+                        ? 9 + z
+                        : z > top
+                            // sky
+                            ? win
+                                ? M.atan2(120 - y, x - i60) * 8 + scrollx/9*M.PI & 1 && 40
+                                : 10
+                            // tower
+                            : M.sin(a = M.acos(x / i60 % 2 - 1)) * 40 - i60 + tower[mod((1 - a / M.PI) * 180 + scrollx | 0)][z],
+                d = min(1, -min(0, M.hypot(i60 - x, 12 - z + playery) / 12 - 2)) * magic,
+                c.fillStyle = `hsl(${240 + d},25%,${color + d / 6}%)`
     })(120)
 }, scrollx = 42)
