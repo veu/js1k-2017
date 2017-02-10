@@ -78,7 +78,7 @@ setInterval(e => {
                         // tower
                         : M.sin(a = M.acos(x / 60 % 2 - 1)) * 40 - 60 + tower[mod((1 - a / M.PI) * 180 + scrollx | 0)][y + scrolly],
             d = min(1, -min(0, M.hypot(60 - x, playery - y - scrolly + 12) / 12 - 2)) * magic,
-            c.fillStyle = `hsl(${240 + d},20%,${color + d / 6}%`,
+            c.fillStyle = `hsl(${240 + d},20%,${color + d / 6}%)`,
             c.fillRect(x * 4, 640 - y * 4, 4, 4)
     })(120)
 }, scrollx = 42)
