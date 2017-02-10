@@ -12,7 +12,7 @@ for (tower = [e = 360]; e--;)
         tower[e][f] =
             f && f < 42 & between(126, e, 150)
                 // door
-                ? 40 - e % 2 * 3
+                ? 40 - e % 3
                 // windows
                 : windows[div60(f) * 6 + div60(e)] && (
                     between(24, f % 60, 30) & between(0, e % 60, 36)
