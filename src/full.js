@@ -58,12 +58,10 @@ setInterval(e => {
     (x => {
     // draw
     for (; x--;)
-        for (e = mod(~dir ? x - 53 : 69 - x),
-             y = 160; y--;)
-            f = y + scrolly - playery,
+        for (e = mod(~dir ? x - 53 : 69 - x), y = 160; y--;)
             color =
                 // player
-                between(playery, y + scrolly, playery + 24) & between(52, x, 68) & !(f < 0 | 47 - e < f * 2 | f < 20 - e * 3 & f > e * 5 - 4 | e * 2 > 37 - f & e + 4 > f)
+                between(0, f = y + scrolly - playery, 24) & between(52, x, 68) & !(f < 0 | 47 - e < f * 2 | f < 20 - e * 3 & f > e * 5 - 4 | e * 2 > 37 - f & e + 4 > f)
                     ? e + 7 - f
                         ? e * 2 > 30 - f & e + 4 > f
                             ? 99
