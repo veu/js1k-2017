@@ -31,8 +31,8 @@ onkeydown = onkeyup = e => {
 }
 
 setInterval(e => {
-    dir = !!keys[2]*4 - !!keys[0]*4;
-    scrollx = mod(scrollx + dir);
+    dir = !keys[0] - !keys[2];
+    scrollx = mod(scrollx + dir * 4);
 
     // update speed
     sy = -min(keys[1] && magic && magic-- ? 5 : 10, 1 - sy);
@@ -56,7 +56,7 @@ setInterval(e => {
     (x => {
     // draw
     for (; x--;)
-        for (e = mod(dir < 0 ? 69 - x : x - 53),
+        for (e = mod(~dir ? x - 53 : 69 - x),
              y = 160; y--;)
             f = y + scrolly - playery,
             color =
