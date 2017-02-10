@@ -37,6 +37,8 @@ gulp.task('minify', function () {
               'color',
               'dir',
               'div60',
+              'i30',
+              'i360',
               'i60',
               'key',
               'keys',
