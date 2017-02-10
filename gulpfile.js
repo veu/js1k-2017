@@ -35,10 +35,11 @@ gulp.task('minify', function () {
             namesToReplace: [
               'between',
               'color',
+              'dir',
               'div60',
+              'i60',
               'key',
               'keys',
-              'last',
               'magic',
               'min',
               'mod',
@@ -46,6 +47,8 @@ gulp.task('minify', function () {
               'scrollx',
               'scrolly',
               'sy',
+              'top',
+              'tower',
               'wall',
               'win',
               'windows'
