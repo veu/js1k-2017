@@ -34,7 +34,6 @@ gulp.task('minify', function () {
             ],
             namesToReplace: [
               'between',
-              'color',
               'dir',
               'div60',
               'i30',
