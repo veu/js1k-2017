@@ -29,7 +29,7 @@ min = M.min;
 scrolly = -20;
 
 keys = [];
-onkeydown = onkeyup = e => keys[key = 39 - e.which] = e.type[5];
+onkeydown = onkeyup = e => keys[39 - e.which] = e.type[5];
 
 setInterval(e => {
     dir = !keys[2] - !keys[0];

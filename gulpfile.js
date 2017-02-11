@@ -39,7 +39,6 @@ gulp.task('minify', function () {
               'i30',
               'i360',
               'i60',
-              'key',
               'keys',
               'magic',
               'min',
