@@ -22,6 +22,9 @@ module.exports = function({types: t}) {
       if (path.key === 'property' && !path.parent.computed) {
         return;
       }
+      if (path.parent.type === 'ObjectProperty' && path.key === 'key') {
+        return;
+      }
 
       if (this.variableMap.has(path.node.name)) {
         path.replaceWith(t.Identifier(this.variableMap.get(path.node.name)));

@@ -6,7 +6,7 @@ between = (x, y, z) => x < y & y < z;
 wall = (x, y) => between(0, y / 6 % 51, 1) ? 7 : y % 6 && (x + (y / 6 & 1) * 6) % 12 && (wall(x + 1, y) ? 8 : 6);
 div60 = x => x / i60 | 0;
 
-windows = [M = Math];
+windows = [];
 for(sy = magic = 120; playery = win = sy--;)
     windows[sy] = sy * 28 % 64 < 39 - sy / 4;
 
@@ -25,7 +25,7 @@ for (tower = [e = i360 = 360]; e--;)
                 // wall
                 || wall(e, f);
 
-min = M.min;
+({min: min, sin: sin, hypot: hypot, PI: PI} = M = Math);
 scrolly = -20;
 
 keys = [];
@@ -57,10 +57,10 @@ setInterval(e => {
         for (playery > 0 || (sy = 14, playery = -2); x--;)
             for (e = mod(~dir ? x - 53 : 69 - x), y = 160; y--; c.fillRect(x * 4, 640 - y * 4, 4, 4))
                 z = scrolly + y,
-                d = min(1, -min(0, M.hypot(i60 - x, 12 - z + playery) / 12 - 2)) * magic,
+                d = min(1, -min(0, hypot(i60 - x, 12 - z + playery) / 12 - 2)) * magic,
                 c.fillStyle = `hsl(${240 + d},25%,${d / 6 + 9 * (
                     // player
-                    between(0, f = z - playery + !win * M.sin(x/2)*(14-M.abs(sy))/8|0, 24) & between(52, x, 68) & !(f < 0 | 47 - e < f * 2 | f < 20 - e * 3 & f > e * 5 - 4 | e * 2 > 37 - f & e + 4 > f)
+                    between(0, f = z - playery + !win * sin(x/2)*(14-hypot(sy))/8|0, 24) & between(52, x, 68) & !(f < 0 | 47 - e < f * 2 | f < 20 - e * 3 & f > e * 5 - 4 | e * 2 > 37 - f & e + 4 > f)
                         ? e + 7 - f
                             ? e * 2 > i30 - f & e + 4 > f
                                 ? 9
@@ -73,10 +73,10 @@ setInterval(e => {
                         : z > top
                             // sky
                             ? win
-                                ? M.atan2(120 - y, x - i60) * 8 + scrollx/9*M.PI & 1 && 4
+                                ? M.atan2(120 - y, x - i60) * 8 + scrollx/9*PI & 1 && 4
                                 : 1
                             // tower
-                            : M.sin(a = M.acos(x / i60 % 2 - 1)) * 4 - 6 + tower[mod((1 - a / M.PI) * 180 + scrollx | 0)][z]
+                            : sin(a = M.acos(x / i60 % 2 - 1)) * 4 - 6 + tower[mod((1 - a / PI) * 180 + scrollx | 0)][z]
                 )}%)`
     })(120)
 }, scrollx = 42)
