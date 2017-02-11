@@ -3,7 +3,7 @@ i60 = 60;
 
 mod = x => (x + i360) % i360;
 between = (x, y, z) => x < y & y < z;
-wall = (x, y) => between(0, y / 6 % 51, 1) ? 70 : y % 6 && (x + (y / 6 | 0) % 2 * 6) % 12 && (wall(x + 1, y) ? 80 : i60);
+wall = (x, y) => between(0, y / 6 % 51, 1) ? 70 : y % 6 && (x + (y / 6 & 1) * 6) % 12 && (wall(x + 1, y) ? 80 : i60);
 div60 = x => x / i60 | 0;
 
 windows = [M = Math];
@@ -40,7 +40,7 @@ setInterval(e => {
 
     // update position
     playery += sy;
-    scrolly += (y = playery - scrolly) > 110 ? y - 110 : y < 5 ? y - 5 : 0;
+    scrolly += (y = playery - scrolly) > 110 ? y - 110 : y < 5 && y - 5;
 
     // check tower top collision
     if (win = playery > 1228)
