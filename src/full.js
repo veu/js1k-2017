@@ -6,7 +6,7 @@ between = (x, y, z) => x < y & y < z;
 wall = (x, y) => between(0, y / 6 % 51, 1) ? 7 : y % 6 && (x + (y / 6 & 1) * 6) % 12 && (wall(x + 1, y) ? 8 : 6);
 div60 = x => x / i60 | 0;
 
-windows = [];
+windows = [{min: min, sin: sin, hypot: hypot, PI: PI} = M = Math];
 for(sy = magic = 120; playery = win = sy--;)
     windows[sy] = sy * 28 % 64 < 39 - sy / 4;
 
@@ -25,8 +25,7 @@ for (tower = [e = i360 = 360]; e--;)
                 // wall
                 || wall(e, f);
 
-({min: min, sin: sin, hypot: hypot, PI: PI} = M = Math);
-scrolly = -20;
+scrolly = -12;
 
 keys = [];
 onkeydown = onkeyup = e => keys[39 - e.which] = e.type[5];
