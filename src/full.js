@@ -31,7 +31,7 @@ setInterval(e => {
     scrollx = mod(scrollx + dir * 4);
 
     // update position
-    playery += sy = -min(c[1] && magic && magic-- ? 5 : 10, 1 - sy);
+    playery += sy = -min(c[1] && magic && magic-- ? 3 : 10, 1 - sy);
     scrolly += (y = playery - scrolly) > 110 ? y - 110 : y < 5 && y - 5;
 
     // check tower top collision
