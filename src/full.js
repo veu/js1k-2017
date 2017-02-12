@@ -40,8 +40,7 @@ setInterval(e => {
     scrolly += (y = playery - scrolly) > 110 ? y - 110 : y < 5 && y - 5;
 
     // check tower top collision
-    if (win = playery > 1228)
-        playery = c[sy = 0] = top;
+    win = playery > 1228 ? playery = c[sy = 0] = top : 0;
 
     // check window collision
     if (visible(playery) && windowat(mod(98 + scrollx), playery) & between(sy, playery % i60 - i30, 1) & between(0, (scrollx + 38) % i60, 52))
