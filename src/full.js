@@ -5,19 +5,17 @@ mod = x => (x + i360) % i360;
 between = (x, y, z) => x < y & y < z;
 wall = (x, y) => between(0, y / 6 % 51, 1) ? 7 : y % 6 && (x + (y / 6 & 1) * 6) % 12 && (wall(x + 1, y) ? 8 : 6);
 div60 = x => x / i60 | 0;
+windowat = (x, y) => (z = div60(y) * 6 + div60(x)) * 28 % 64 < 39 - z / 4;
 
-windows = [{min: min, sin: sin, hypot: hypot, PI: PI} = M = Math];
-for(sy = magic = 120; playery = win = sy--;)
-    windows[sy] = sy * 28 % 64 < 39 - sy / 4;
-
-for (tower = [e = i360 = 360]; e--;)
+tower = [{min: min, sin: sin, hypot: hypot, PI: PI} = M = Math];
+for (e = i360 = 360; playery = win = sy = e--;)
     for (tower[e] = [f = top = 1231]; f--;)
         tower[e][f] =
-            f < 42 & between(126, e, 150)
+            f < 42 & between(126, e, magic = 150)
                 // door
                 ? 1 + e % 3
                 // windows
-                : windows[div60(f) * 6 + div60(e)] && (
+                : windowat(e, f) && (
                     between(24, f % i60, i30) & between(0, e % i60, 36)
                         ? 9
                         : between(i30, f % i60, 54) & between(6, e % i60, i30)
@@ -46,7 +44,7 @@ setInterval(e => {
         playery = keys[sy = 0] = top;
 
     // check window collision
-    if (windows[div60(playery) * 6 + div60(mod(98 + scrollx))] & between(sy, playery % i60 - i30, 1) & between(0, (scrollx + 38) % i60, 52))
+    if (windowat(mod(98 + scrollx), playery) & between(sy, playery % i60 - i30, 1) & between(0, (scrollx + 38) % i60, 52))
         playery += i30 - playery % i60,
         sy = 14;
 

@@ -54,7 +54,7 @@ gulp.task('minify', function () {
               'tower',
               'wall',
               'win',
-              'windows'
+              'windowat'
             ]
           }
         ] 
