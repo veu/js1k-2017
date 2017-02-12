@@ -13,7 +13,7 @@ for (step = i360 = 360; playery = win = step--;)
         tower[step][sy] =
             sy < 42 & between(126, step, magic = 150)
                 // door
-                ? 1 + step % 3
+                ? step & 3
                 // windows
                 : windowat(step, sy) && (
                     between(24, sy % i60, i30 = 30) & between(0, step % i60, 36)
