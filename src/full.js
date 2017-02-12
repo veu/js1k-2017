@@ -56,7 +56,7 @@ setInterval(e => {
                 d = min(1, -min(0, hypot(i60 - x, 12 - z + playery) / 12 - 2)) * magic,
                 c.fillStyle = `hsl(${240 + d},25%,${d / 6 + 9 * (
                     // player
-                    between(0, f = z - playery + !win * sin(x/2)*(14-hypot(sy))/8|0, 24) & between(52, x, 68) & !(f < 0 | 47 - e < f * 2 | f < 20 - e * 3 & f > e * 5 - 4 | e * 2 > 37 - f & e + 4 > f)
+                    between(0, f = z - playery + !win * sin(x/2)*(14-hypot(sy))/8|0, 24) & between(52, x, 68) & !(f < 0 | 47 - e < f * 2 | f / 3 < 6 - e & f > e * 5 - 4 | e * 2 > 37 - f & e + 4 > f)
                         ? e + 7 - f
                             ? e * 2 > i30 - f & e + 4 > f
                                 ? 9
