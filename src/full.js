@@ -8,20 +8,20 @@ div60 = x => x / i60 | 0;
 windowat = (x, y) => (z = div60(y) * 6 + div60(x)) * 28 % 64 < 39 - z / 4;
 
 tower = [{min: min, sin: sin, hypot: hypot, PI: PI} = M = Math];
-for (e = i360 = 360; playery = win = sy = e--;)
-    for (tower[e] = [f = top = 1231]; f--;)
-        tower[e][f] =
-            f < 42 & between(126, e, magic = 150)
+for (step = i360 = 360; playery = win = sy = step--;)
+    for (tower[step] = [f = top = 1231]; f--;)
+        tower[step][f] =
+            f < 42 & between(126, step, magic = 150)
                 // door
-                ? 1 + e % 3
+                ? 1 + step % 3
                 // windows
-                : windowat(e, f) && (
-                    between(24, f % i60, i30) & between(0, e % i60, 36)
+                : windowat(step, f) && (
+                    between(24, f % i60, i30) & between(0, step % i60, 36)
                         ? 9
-                        : between(i30, f % i60, 54) & between(6, e % i60, i30)
+                        : between(i30, f % i60, 54) & between(6, step % i60, i30)
                 )
                 // wall
-                || wall(e, f);
+                || wall(step, f);
 
 scrolly = -12;
 
@@ -29,6 +29,7 @@ keys = [];
 onkeydown = onkeyup = e => keys[39 - e.which] = e.type[5];
 
 setInterval(e => {
+    step++;
     dir = !keys[2] - !keys[0];
     scrollx = mod(scrollx + dir * 4);
 
@@ -73,7 +74,7 @@ setInterval(e => {
                                 ? M.atan2(120 - y, x - i60) * 8 + scrollx/9*PI & 1 && 4
                                 : 1
                             // tower
-                            : sin(a = M.acos(x / i60 % 2 - 1)) * 4 - 6 + tower[mod((1 - a / PI) * 180 + scrollx | 0)][z]
+                            : sin(a = M.acos(x / i60 % 2 - 1)) * 4 - 6 + tower[mod((1 - a / PI) * 180 + scrollx | 0)][div60(z) - 19 || step % i60 < i30 ? z : z % 12 + i60]
                 )}%)`
     })(120)
 }, scrollx = 42)
