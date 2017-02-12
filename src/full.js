@@ -1,4 +1,3 @@
-i30 = 30;
 i60 = 60;
 
 mod = x => (x + i360) % i360;
@@ -8,20 +7,20 @@ div60 = x => x / i60 | 0;
 windowat = (x, y) => (z = div60(y) * 6 + div60(x)) * 28 % 64 < 39 - z / 4;
 
 tower = [{min: min, sin: sin, hypot: hypot, PI: PI} = M = Math];
-for (step = i360 = 360; playery = win = sy = step--;)
-    for (tower[step] = [f = top = 1231]; f--;)
-        tower[step][f] =
-            f < 42 & between(126, step, magic = 150)
+for (step = i360 = 360; playery = win = step--;)
+    for (tower[step] = [sy = top = 1231]; sy--;)
+        tower[step][sy] =
+            sy < 42 & between(126, step, magic = 150)
                 // door
                 ? 1 + step % 3
                 // windows
-                : windowat(step, f) && (
-                    between(24, f % i60, i30) & between(0, step % i60, 36)
+                : windowat(step, sy) && (
+                    between(24, sy % i60, i30 = 30) & between(0, step % i60, 36)
                         ? 9
-                        : between(i30, f % i60, 54) & between(6, step % i60, i30)
+                        : between(i30, sy % i60, 54) & between(6, step % i60, i30)
                 )
                 // wall
-                || wall(step, f);
+                || wall(step, sy);
 
 scrolly = -12;
 
