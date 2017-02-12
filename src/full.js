@@ -24,16 +24,15 @@ for (step = i360 = 360; playery = win = step--;)
 
 scrolly = -12;
 
-keys = [];
-onkeydown = onkeyup = e => keys[39 - e.which] = e.type[5];
+onkeydown = onkeyup = e => c[39 - e.which] = e.type[5];
 
 setInterval(e => {
     step++;
-    dir = !keys[2] - !keys[0];
+    dir = !c[2] - !c[0];
     scrollx = mod(scrollx + dir * 4);
 
     // update speed
-    sy = -min(keys[1] && magic && magic-- ? 5 : 10, 1 - sy);
+    sy = -min(c[1] && magic && magic-- ? 5 : 10, 1 - sy);
 
     // update position
     playery += sy;
@@ -41,7 +40,7 @@ setInterval(e => {
 
     // check tower top collision
     if (win = playery > 1228)
-        playery = keys[sy = 0] = top;
+        playery = c[sy = 0] = top;
 
     // check window collision
     if (windowat(mod(98 + scrollx), playery) & between(sy, playery % i60 - i30, 1) & between(0, (scrollx + 38) % i60, 52))
