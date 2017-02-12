@@ -5,6 +5,7 @@ between = (x, y, z) => x < y & y < z;
 wall = (x, y) => between(0, y / 6 % 51, 1) ? 7 : y % 6 && (x + (y / 6 & 1) * 6) % 12 && (wall(x + 1, y) ? 8 : 6);
 div60 = x => x / i60 | 0;
 windowat = (x, y) => (z = div60(y) * 6 + div60(x)) * 28 % 64 < 39 - z / 4;
+visible = y => div60(y) - 19 || step % i60 < i30;
 
 tower = [{min: min, sin: sin, hypot: hypot, PI: PI} = M = Math];
 for (step = i360 = 360; playery = win = step--;)
@@ -43,7 +44,7 @@ setInterval(e => {
         playery = c[sy = 0] = top;
 
     // check window collision
-    if (windowat(mod(98 + scrollx), playery) & between(sy, playery % i60 - i30, 1) & between(0, (scrollx + 38) % i60, 52))
+    if (visible(playery) && windowat(mod(98 + scrollx), playery) & between(sy, playery % i60 - i30, 1) & between(0, (scrollx + 38) % i60, 52))
         playery += i30 - playery % i60,
         sy = 14;
 
@@ -72,7 +73,7 @@ setInterval(e => {
                                 ? M.atan2(120 - y, x - i60) * 8 + scrollx/9*PI & 1 && 4
                                 : 1
                             // tower
-                            : sin(a = M.acos(x / i60 % 2 - 1)) * 4 - 6 + tower[mod((1 - a / PI) * 180 + scrollx | 0)][div60(z) - 19 || step % i60 < i30 ? z : z % 12 + i60]
+                            : sin(a = M.acos(x / i60 % 2 - 1)) * 4 - 6 + tower[mod((1 - a / PI) * 180 + scrollx | 0)][visible(z) ? z : z % 12 + i60]
                 )}%)`
     })(120)
 }, scrollx = 42)
