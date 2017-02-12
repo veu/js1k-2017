@@ -7,6 +7,7 @@ div60 = x => x / i60 | 0;
 windowat = (x, y) => (z = div60(y) * 6 + div60(x)) * 28 % 64 < 39 - z / 4;
 visible = y => div60(y) - 19 || step % i60 < i30;
 
+// precompute tower wall for faster rendering
 tower = [{min: min, sin: sin, hypot: hypot, PI: PI} = M = Math];
 for (step = i360 = 360; playery = win = step--; scrolly = -12)
     for (tower[step] = [sy = top = 1231]; sy--;)
@@ -48,6 +49,7 @@ setInterval(e => {
         for (playery > 0 || (sy = 14, playery = -2); x--;)
             for (e = mod(~dir ? x - 53 : 69 - x), y = 160; y--; c.fillRect(x * 4, 636 - y * 4, 4, 4))
                 z = scrolly + y,
+                // calculate light around player
                 d = min(1, -min(0, hypot(i60 - x, 12 - z + playery) / 12 - 2)) * magic,
                 c.fillStyle = `hsl(${240 + d},25%,${d / 6 + 9 * (
                     // player
