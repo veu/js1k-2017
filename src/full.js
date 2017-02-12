@@ -8,7 +8,7 @@ windowat = (x, y) => (z = div60(y) * 6 + div60(x)) * 28 % 64 < 39 - z / 4;
 visible = y => div60(y) - 19 || step % i60 < i30;
 
 tower = [{min: min, sin: sin, hypot: hypot, PI: PI} = M = Math];
-for (step = i360 = 360; playery = win = step--;)
+for (step = i360 = 360; playery = win = step--; scrolly = -12)
     for (tower[step] = [sy = top = 1231]; sy--;)
         tower[step][sy] =
             sy < 42 & between(126, step, magic = 150)
@@ -22,8 +22,6 @@ for (step = i360 = 360; playery = win = step--;)
                 )
                 // wall
                 || wall(step, sy);
-
-scrolly = -12;
 
 onkeydown = onkeyup = e => c[39 - e.which] = e.type[5];
 
