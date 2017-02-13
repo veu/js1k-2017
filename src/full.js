@@ -50,9 +50,7 @@ setInterval(x = (x, y, z) => {
         for (c.fillRect(0, 0, a.width^=0, 640); x--;)
             for (e = mod(~dir ? x - 53 : 69 - x), y = 160; y--;)
                 z = scrolly + y,
-                // calculate light around player
-                d = Math.min(1, -Math.min(0, Math.hypot(60 - x, 12 - z + playery) / 12 - 2)) * magic / 2,
-                l = 
+                l =
                     // player
                     between(0, f = z - playery + !win * Math.sin(x/2)*(14-Math.hypot(sy))/8|0, 24) && between(52, x, 68) && !(f < 0 || 47 - e < f * 2 || f / 3 < 6 - e && f > e * 5 - 4 || e * 2 > 37 - f && e + 4 > f)
                         ? e + 7 - f
@@ -72,8 +70,8 @@ setInterval(x = (x, y, z) => {
                             // tower
                             : Math.sin(r = Math.acos(x / 60 % 2 - 1)) * 4 - 6 + tower[mod((1 - r / Math.PI) * 180 + scrollx | 0)][div60(z) - 19 || step % 60 < 30 ? z : z % 12 + 60]
                 ,
-                l > 1 && (
-                    d *= l / 5,
+                l && (
+                    d = Math.min(1, -Math.min(0, Math.hypot(60 - x, 12 - z + playery) / 12 - 2)) * magic * l / 10,
                     c.fillStyle = `rgb(${30+l*8+d*3|0},${30+l*8+d*2|0},${40+l*16+d|0})`,
                     c.fillRect(x * 4, 636 - y * 4, 4, 4)
                 )
