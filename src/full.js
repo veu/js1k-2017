@@ -32,10 +32,10 @@ setInterval(x = (x, y, z) => {
 
     // update position
     playery += sy = -Math.min(c[1] && magic && magic-- ? 2 : 8, 1 - sy);
-    scrolly += (y = playery - scrolly) > 110 ? y - 110 : y < 5 && y - 5;
+    scrolly += 110 < (y = playery - scrolly) ? y - 110 : y < 5 && y - 5;
 
     // check tower top collision
-    win = playery > 1228 ? playery = c[sy = 0] = 1230 : 0,
+    win = 1228 < playery ? playery = c[sy = 0] = 1230 : 0,
 
     // check window collision
     (div60(playery) - 19 || step % 60 < 30) && windowat(mod(98 + scrollx), playery) && between(sy, playery % 60 - 30, 1) && between(0, (scrollx + 38) % 60, 52) && (
@@ -44,7 +44,7 @@ setInterval(x = (x, y, z) => {
     );
 
     // check ground collision
-    playery > 0 || (sy = 13, playery = -2);
+    0 < playery || (sy = 13, playery = -2);
 
     // draw
     (x = (x, y, z) => {
@@ -53,9 +53,9 @@ setInterval(x = (x, y, z) => {
                 z = scrolly + y,
                 l =
                     // player
-                    between(0, f = z - playery + !win * Math.sin(x/2)*(14-Math.hypot(sy))/8|0, 24) && between(52, x, 68) && !(f < 0 || 47 - e < f * 2 || f / 3 < 6 - e && f > e * 5 - 4 || e * 2 > 37 - f && e + 4 > f)
+                    between(0, f = z - playery + !win * Math.sin(x/2)*(14-Math.hypot(sy))/8|0, 24) && between(52, x, 68) && !(f < 0 || 47 - e < f * 2 || f / 3 < 6 - e && e * 5 - 4 < f || 37 - f < e * 2 && f < e + 4)
                         ? e + 7 - f
-                            ? e * 2 > 30 - f && e + 4 > f
+                            ? 30 - f < e * 2 && f < e + 4
                                 ? 9
                                 : 2
                             : 4
@@ -63,7 +63,7 @@ setInterval(x = (x, y, z) => {
                     : z < 0
                         // ground
                         ? 2 + z / 6
-                        : z > 1230
+                        : 1230 < z
                             // sky
                             ? win
                                 ? (x - 60) / (100 - y) * 5 + step / 5 & 1 && 4
