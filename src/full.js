@@ -27,7 +27,6 @@ a.style = 'width:480px;height:640px;image-rendering:pixelated';
 onkeydown = onkeyup = (x, y, z) => c[39 - x.which] = x.type[5];
 
 setInterval(x = (x, y, z) => {
-    step++;
     dir = !c[2] - !c[0];
     scrollx = mod(scrollx + dir * 4);
 
@@ -49,7 +48,7 @@ setInterval(x = (x, y, z) => {
 
     // draw
     (x = (x, y, z) => {
-        for (data = c.createImageData(x, 160); x--;)
+        for (data = c.createImageData(x = 120, 160); x--;)
             for (e = mod(~dir ? x - 53 : 69 - x), y = 160; y--;)
                 z = scrolly + y,
                 l =
@@ -76,6 +75,6 @@ setInterval(x = (x, y, z) => {
                     data.data[((159 - y) * 120 + x) * 4 + 1] = 30 + l * 8 + d * 2 | 0,
                     data.data[((159 - y) * 120 + x) * 4 + 2] = 40 + l * 16 + d | 0,
                     data.data[((159 - y) * 120 + x) * 4 + 3] = 255;
-        c.putImageData(data, 0, 0);
-    })(120)
+        c.putImageData(data, 0, 0)
+    })(step++)
 }, scrollx = 33)
