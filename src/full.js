@@ -6,7 +6,6 @@ windowat = (x, y, z) => (z = div60(y) * 6 + div60(x)) * 28 % 64 < 39 - z / 4;
 visible = (x, y, z) => div60(y) - 19 || step % 60 < 30;
 
 // precompute tower wall for faster rendering
-tower = [{min: min, sin: sin, hypot: hypot, PI: PI} = M = Math];
 for (step = 360; playery = win = step--; scrolly = -12)
     for (tower[step] = [sy = top = 1231]; sy--;)
         tower[step][sy] =
@@ -30,7 +29,7 @@ setInterval(x = (x, y, z) => {
     scrollx = mod(scrollx + dir * 4);
 
     // update position
-    playery += sy = -min(c[1] && magic && magic-- ? 3 : 10, 1 - sy);
+    playery += sy = -Math.min(c[1] && magic && magic-- ? 3 : 10, 1 - sy);
     scrolly += (y = playery - scrolly) > 110 ? y - 110 : y < 5 && y - 5;
 
     // check tower top collision
@@ -48,10 +47,10 @@ setInterval(x = (x, y, z) => {
             for (e = mod(~dir ? x - 53 : 69 - x), y = 160; y--; c.fillRect(x * 4, 636 - y * 4, 4, 4))
                 z = scrolly + y,
                 // calculate light around player
-                d = min(1, -min(0, hypot(60 - x, 12 - z + playery) / 12 - 2)) * magic,
+                d = Math.min(1, -Math.min(0, Math.hypot(60 - x, 12 - z + playery) / 12 - 2)) * magic,
                 c.fillStyle = `hsl(${240 + d},25%,${d / 6 + 9 * (
                     // player
-                    between(0, f = z - playery + !win * sin(x/2)*(14-hypot(sy))/8|0, 24) & between(52, x, 68) & !(f < 0 | 47 - e < f * 2 | f / 3 < 6 - e & f > e * 5 - 4 | e * 2 > 37 - f & e + 4 > f)
+                    between(0, f = z - playery + !win * Math.sin(x/2)*(14-Math.hypot(sy))/8|0, 24) & between(52, x, 68) & !(f < 0 | 47 - e < f * 2 | f / 3 < 6 - e & f > e * 5 - 4 | e * 2 > 37 - f & e + 4 > f)
                         ? e + 7 - f
                             ? e * 2 > 30 - f & e + 4 > f
                                 ? 9
@@ -64,10 +63,10 @@ setInterval(x = (x, y, z) => {
                         : z > top
                             // sky
                             ? win
-                                ? M.atan2(120 - y, x - 60) * 8 + scrollx/9*PI & 1 && 4
+                                ? Math.atan2(120 - y, x - 60) * 8 + scrollx/9*Math.PI & 1 && 4
                                 : 1
                             // tower
-                            : sin(a = M.acos(x / 60 % 2 - 1)) * 4 - 6 + tower[mod((1 - a / PI) * 180 + scrollx | 0)][visible(z) ? z : z % 12 + 60]
+                            : Math.sin(a = Math.acos(x / 60 % 2 - 1)) * 4 - 6 + tower[mod((1 - a / Math.PI) * 180 + scrollx | 0)][visible(z) ? z : z % 12 + 60]
                 )}%)`
     })(120)
 }, scrollx = 42)
