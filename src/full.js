@@ -6,7 +6,7 @@ windowat = (x, y, z) => (z = div60(y) * 6 + div60(x)) * 28 % 64 < 39 - z / 4;
 visible = (x, y, z) => div60(y) - 19 || step % 60 < 30;
 
 // precompute tower wall for faster rendering
-for (step = 360; playery = win = step--; scrolly = -12)
+for (tower = [step = 360]; playery = win = step--; scrolly = -12)
     for (tower[step] = [sy = top = 1231]; sy--;)
         tower[step][sy] =
             sy < 42 & between(126, step, magic = 150)
