@@ -6,7 +6,7 @@ windowat = (x, y, z) => (z = div60(y) * 6 + div60(x)) * 28 % 64 < 39 - z / 4;
 
 // precompute tower wall for faster rendering
 for (tower = [x = 360]; playery = win = step = sy = x--;) {
-    for (tower[x] = [top = y = 1230]; y--;)
+    for (tower[x] = [y = 1230]; y--;)
         tower[x][y] =
             y < 42 && between(126, x, magic = 150)
                 // door
@@ -36,7 +36,7 @@ setInterval(x = (x, y, z) => {
     scrolly += (y = playery - scrolly) > 110 ? y - 110 : y < 5 && y - 5;
 
     // check tower top collision
-    win = playery > 1228 ? playery = c[sy = 0] = top : 0,
+    win = playery > 1228 ? playery = c[sy = 0] = 1230 : 0,
 
     // check window collision
     (div60(playery) - 19 || step % 60 < 30) && windowat(mod(98 + scrollx), playery) && between(sy, playery % 60 - 30, 1) && between(0, (scrollx + 38) % 60, 52) && (
@@ -64,7 +64,7 @@ setInterval(x = (x, y, z) => {
                     : z < 0
                         // ground
                         ? 2 + z / 6
-                        : z > top
+                        : z > 1230
                             // sky
                             ? win
                                 ? (x - 60) / (100 - y) * 5 + step / 5 & 1 && 4
