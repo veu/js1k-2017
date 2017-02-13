@@ -1,9 +1,9 @@
-mod = x => (x + 360) % 360;
+mod = (x, y, z) => (x + 360) % 360;
 between = (x, y, z) => x < y & y < z;
-wall = (x, y) => between(0, y / 6 % 51, 1) ? 7 : y % 6 && (x + (y / 6 & 1) * 6) % 12 && (wall(x + 1, y) ? 8 : 6);
-div60 = x => x / 60 | 0;
-windowat = (x, y) => (z = div60(y) * 6 + div60(x)) * 28 % 64 < 39 - z / 4;
-visible = y => div60(y) - 19 || step % 60 < 30;
+wall = (x, y, z) => between(0, y / 6 % 51, 1) ? 7 : y % 6 && (x + (y / 6 & 1) * 6) % 12 && (wall(x + 1, y) ? 8 : 6);
+div60 = (x, y, z) => x / 60 | 0;
+windowat = (x, y, z) => (z = div60(y) * 6 + div60(x)) * 28 % 64 < 39 - z / 4;
+visible = (x, y, z) => div60(y) - 19 || step % 60 < 30;
 
 // precompute tower wall for faster rendering
 tower = [{min: min, sin: sin, hypot: hypot, PI: PI} = M = Math];
@@ -22,9 +22,9 @@ for (step = 360; playery = win = step--; scrolly = -12)
                 // wall
                 || wall(step, sy);
 
-onkeydown = onkeyup = e => c[39 - e.which] = e.type[5];
+onkeydown = onkeyup = (x, y, z) => c[39 - x.which] = x.type[5];
 
-setInterval(e => {
+setInterval(x = (x, y, z) => {
     step++;
     dir = !c[2] - !c[0];
     scrollx = mod(scrollx + dir * 4);
@@ -42,7 +42,7 @@ setInterval(e => {
         sy = 14;
 
     // draw
-    (x => {
+    (x = (x, y, z) => {
              // check ground collision
         for (playery > 0 || (sy = 14, playery = -2); x--;)
             for (e = mod(~dir ? x - 53 : 69 - x), y = 160; y--; c.fillRect(x * 4, 636 - y * 4, 4, 4))
