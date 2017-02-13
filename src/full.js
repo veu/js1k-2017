@@ -1,15 +1,13 @@
-i60 = 60;
-
-mod = x => (x + i360) % i360;
+mod = x => (x + 360) % 360;
 between = (x, y, z) => x < y & y < z;
 wall = (x, y) => between(0, y / 6 % 51, 1) ? 7 : y % 6 && (x + (y / 6 & 1) * 6) % 12 && (wall(x + 1, y) ? 8 : 6);
-div60 = x => x / i60 | 0;
+div60 = x => x / 60 | 0;
 windowat = (x, y) => (z = div60(y) * 6 + div60(x)) * 28 % 64 < 39 - z / 4;
-visible = y => div60(y) - 19 || step % i60 < i30;
+visible = y => div60(y) - 19 || step % 60 < 30;
 
 // precompute tower wall for faster rendering
 tower = [{min: min, sin: sin, hypot: hypot, PI: PI} = M = Math];
-for (step = i360 = 360; playery = win = step--; scrolly = -12)
+for (step = 360; playery = win = step--; scrolly = -12)
     for (tower[step] = [sy = top = 1231]; sy--;)
         tower[step][sy] =
             sy < 42 & between(126, step, magic = 150)
@@ -17,9 +15,9 @@ for (step = i360 = 360; playery = win = step--; scrolly = -12)
                 ? step & 3
                 // windows
                 : windowat(step, sy) && (
-                    between(24, sy % i60, i30 = 30) & between(0, step % i60, 36)
+                    between(24, sy % 60, 30) & between(0, step % 60, 36)
                         ? 9
-                        : between(i30, sy % i60, 54) & between(6, step % i60, i30)
+                        : between(30, sy % 60, 54) & between(6, step % 60, 30)
                 )
                 // wall
                 || wall(step, sy);
@@ -39,8 +37,8 @@ setInterval(e => {
     win = playery > 1228 ? playery = c[sy = 0] = top : 0;
 
     // check window collision
-    if (visible(playery) && windowat(mod(98 + scrollx), playery) & between(sy, playery % i60 - i30, 1) & between(0, (scrollx + 38) % i60, 52))
-        playery += i30 - playery % i60,
+    if (visible(playery) && windowat(mod(98 + scrollx), playery) & between(sy, playery % 60 - 30, 1) & between(0, (scrollx + 38) % 60, 52))
+        playery += 30 - playery % 60,
         sy = 14;
 
     // draw
@@ -50,12 +48,12 @@ setInterval(e => {
             for (e = mod(~dir ? x - 53 : 69 - x), y = 160; y--; c.fillRect(x * 4, 636 - y * 4, 4, 4))
                 z = scrolly + y,
                 // calculate light around player
-                d = min(1, -min(0, hypot(i60 - x, 12 - z + playery) / 12 - 2)) * magic,
+                d = min(1, -min(0, hypot(60 - x, 12 - z + playery) / 12 - 2)) * magic,
                 c.fillStyle = `hsl(${240 + d},25%,${d / 6 + 9 * (
                     // player
                     between(0, f = z - playery + !win * sin(x/2)*(14-hypot(sy))/8|0, 24) & between(52, x, 68) & !(f < 0 | 47 - e < f * 2 | f / 3 < 6 - e & f > e * 5 - 4 | e * 2 > 37 - f & e + 4 > f)
                         ? e + 7 - f
-                            ? e * 2 > i30 - f & e + 4 > f
+                            ? e * 2 > 30 - f & e + 4 > f
                                 ? 9
                                 : 1
                             : 3
@@ -66,10 +64,10 @@ setInterval(e => {
                         : z > top
                             // sky
                             ? win
-                                ? M.atan2(120 - y, x - i60) * 8 + scrollx/9*PI & 1 && 4
+                                ? M.atan2(120 - y, x - 60) * 8 + scrollx/9*PI & 1 && 4
                                 : 1
                             // tower
-                            : sin(a = M.acos(x / i60 % 2 - 1)) * 4 - 6 + tower[mod((1 - a / PI) * 180 + scrollx | 0)][visible(z) ? z : z % 12 + i60]
+                            : sin(a = M.acos(x / 60 % 2 - 1)) * 4 - 6 + tower[mod((1 - a / PI) * 180 + scrollx | 0)][visible(z) ? z : z % 12 + 60]
                 )}%)`
     })(120)
 }, scrollx = 42)
