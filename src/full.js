@@ -5,7 +5,7 @@ div60 = (x, y, z) => x / 60 | 0,
 windowat = (x, y, z) => (z = div60(y) * 6 + div60(x)) * 28 % 64 < 39 - z / 4;
 
 // precompute tower wall for faster rendering
-for (tower = [x = 360]; playery = win = step = sy = x--;) {
+for (tower = [x = 360]; playery = step = sy = x--;) {
     for (tower[x] = [y = 1230]; y--;)
         tower[x][y] =
             y < 42 && between(126, x, magic = 150)
