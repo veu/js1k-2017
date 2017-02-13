@@ -31,14 +31,14 @@ setInterval(x = (x, y, z) => {
     scrollx = mod(scrollx + dir * 4);
 
     // update position
-    playery += sy = -Math.min(c[1] && magic && magic-- ? 2 : 8, 1 - sy);
+    z = playery += sy = -Math.min(c[1] && magic && magic-- ? 2 : 8, 1 - sy);
     scrolly += 110 < (y = playery - scrolly) ? y - 110 : y < 5 && y - 5;
 
     // check tower top collision
     win = 1228 < playery ? playery = c[sy = 0] = 1230 : 0,
 
     // check window collision
-    (div60(playery) - 19 || step % 60 < 30) && windowat(mod(98 + scrollx), playery) && between(sy, playery % 60 - 30, 1) && between(0, (scrollx + 38) % 60, 52) && (
+    (div60(z) - 19 || step % 60 < 30) && windowat(mod(98 + scrollx), playery) && between(sy, playery % 60 - 30, 1) && between(0, (scrollx + 38) % 60, 52) && (
         playery += 30 - playery % 60,
         sy = 13
     );
