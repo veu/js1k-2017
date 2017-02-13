@@ -3,7 +3,6 @@ between = (x, y, z) => x < y & y < z;
 wall = (x, y, z) => between(0, y / 6 % 51, 1) ? 7 : y % 6 && (x + (y / 6 & 1) * 6) % 12 && (wall(x + 1, y) ? 8 : 6);
 div60 = (x, y, z) => x / 60 | 0,
 windowat = (x, y, z) => (z = div60(y) * 6 + div60(x)) * 28 % 64 < 39 - z / 4;
-visible = (x, y, z) => div60(y) - 19 || step % 60 < 30;
 
 // precompute tower wall for faster rendering
 for (tower = [x = 360]; playery = win = step = sy = x--;) {
@@ -38,7 +37,7 @@ setInterval(x = (x, y, z) => {
     win = playery > 1228 ? playery = c[sy = 0] = top : 0,
 
     // check window collision
-    visible(playery) && windowat(mod(98 + scrollx), playery) & between(sy, playery % 60 - 30, 1) & between(0, (scrollx + 38) % 60, 52) && (
+    (div60(playery) - 19 || step % 60 < 30) && windowat(mod(98 + scrollx), playery) & between(sy, playery % 60 - 30, 1) & between(0, (scrollx + 38) % 60, 52) && (
         playery += 30 - playery % 60,
         sy = 14
     );
@@ -69,7 +68,7 @@ setInterval(x = (x, y, z) => {
                                 ? Math.atan2(120 - y, x - 60) * 8 + scrollx/9*Math.PI & 1 && 4
                                 : 1
                             // tower
-                            : Math.sin(a = Math.acos(x / 60 % 2 - 1)) * 4 - 6 + tower[mod((1 - a / Math.PI) * 180 + scrollx | 0)][visible(z) ? z : z % 12 + 60]
+                            : Math.sin(a = Math.acos(x / 60 % 2 - 1)) * 4 - 6 + tower[mod((1 - a / Math.PI) * 180 + scrollx | 0)][div60(z) - 19 || step % 60 < 30 ? z : z % 12 + 60]
                 )}%)`,
                 c.fillRect(x * 4, 636 - y * 4, 4, 4)
     })(120)
