@@ -6,20 +6,22 @@ windowat = (x, y, z) => (z = div60(y) * 6 + div60(x)) * 28 % 64 < 39 - z / 4;
 visible = (x, y, z) => div60(y) - 19 || step % 60 < 30;
 
 // precompute tower wall for faster rendering
-for (tower = [step = 360]; playery = win = step--; scrolly = -12)
-    for (tower[step] = [sy = top = 1231]; sy--;)
-        tower[step][sy] =
-            sy < 42 & between(126, step, magic = 150)
+for (tower = [x = 360]; playery = win = step = sy = x--;) {
+    for (tower[x] = [top = y = 1231]; y--;)
+        tower[x][y] =
+            y < 42 & between(126, x, magic = 150)
                 // door
-                ? step & 3
+                ? x & 3
                 // windows
-                : windowat(step, sy) && (
-                    between(24, sy % 60, 30) & between(0, step % 60, 36)
+                : windowat(x, y) && (
+                    between(24, y % 60, 30) & between(0, x % 60, 36)
                         ? 9
-                        : between(30, sy % 60, 54) & between(6, step % 60, 30)
+                        : between(30, y % 60, 54) & between(6, x % 60, 30)
                 )
                 // wall
-                || wall(step, sy);
+                || wall(x, y);
+    scrolly = -12
+}
 
 onkeydown = onkeyup = (x, y, z) => c[39 - x.which] = x.type[5];
 
@@ -44,7 +46,7 @@ setInterval(x = (x, y, z) => {
     (x = (x, y, z) => {
              // check ground collision
         for (playery > 0 || (sy = 14, playery = -2); x--;)
-            for (e = mod(~dir ? x - 53 : 69 - x), y = 160; y--; c.fillRect(x * 4, 636 - y * 4, 4, 4))
+            for (e = mod(~dir ? x - 53 : 69 - x), y = 160; y--;)
                 z = scrolly + y,
                 // calculate light around player
                 d = Math.min(1, -Math.min(0, Math.hypot(60 - x, 12 - z + playery) / 12 - 2)) * magic,
@@ -67,6 +69,7 @@ setInterval(x = (x, y, z) => {
                                 : 1
                             // tower
                             : Math.sin(a = Math.acos(x / 60 % 2 - 1)) * 4 - 6 + tower[mod((1 - a / Math.PI) * 180 + scrollx | 0)][visible(z) ? z : z % 12 + 60]
-                )}%)`
+                )}%)`,
+                c.fillRect(x * 4, 636 - y * 4, 4, 4)
     })(120)
 }, scrollx = 42)
