@@ -73,7 +73,7 @@ setInterval(x = (x, y, z) => {
                     d = Math.min(1, -Math.min(0, Math.hypot(60 - x, 12 - z + playery) / 12 - 2)) * magic * l / 10,
                     data.data[((159 - y) * 120 + x) * 4] = l * 8 + d * 3 | 0,
                     data.data[((159 - y) * 120 + x) * 4 + 1] = l * 8 + d * 2 | 0,
-                    data.data[((159 - y) * 120 + x) * 4 + 2] = l * 16 + d | 0,
+                    data.data[((159 - y) * 120 + x) * 4 + 2] = l * 8 + d + l * 8 | 0,
                     data.data[((159 - y) * 120 + x) * 4 + 3] = 255;
         c.putImageData(data, 0, 0)
     })(step++)
