@@ -6,7 +6,7 @@ windowat = (x, y, z) => (z = div60(y) * 6 + div60(x)) * 28 % 64 < 39 - z / 4;
 
 // precompute tower wall for faster rendering
 for (tower = [x = 360]; playery = win = step = sy = x--;) {
-    for (tower[x] = [top = y = 1231]; y--;)
+    for (tower[x] = [top = y = 1230]; y--;)
         tower[x][y] =
             y < 42 && between(126, x, magic = 150)
                 // door
@@ -67,7 +67,7 @@ setInterval(x = (x, y, z) => {
                         : z > top
                             // sky
                             ? win
-                                ? Math.atan2(120 - y, x - 60) * 8 + scrollx/9*Math.PI & 1 && 4
+                                ? (x - 60) / (100 - y) * 5 + step / 4 & 1 && 4
                                 : 1
                             // tower
                             : Math.sin(r = Math.acos(x / 60 % 2 - 1)) * 4 - 6 + tower[mod((1 - r / Math.PI) * 180 + scrollx | 0)][div60(z) - 19 || step % 60 < 30 ? z : z % 12 + 60]
