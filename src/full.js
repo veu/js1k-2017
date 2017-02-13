@@ -32,7 +32,7 @@ setInterval(x = (x, y, z) => {
     scrollx = mod(scrollx + dir * 4);
 
     // update position
-    playery += sy = -Math.min(c[1] && magic && magic-- ? 3 : 10, 1 - sy);
+    playery += sy = -Math.min(c[1] && magic && magic-- ? 2 : 8, 1 - sy);
     scrolly += (y = playery - scrolly) > 110 ? y - 110 : y < 5 && y - 5;
 
     // check tower top collision
@@ -41,11 +41,11 @@ setInterval(x = (x, y, z) => {
     // check window collision
     (div60(playery) - 19 || step % 60 < 30) && windowat(mod(98 + scrollx), playery) && between(sy, playery % 60 - 30, 1) && between(0, (scrollx + 38) % 60, 52) && (
         playery += 30 - playery % 60,
-        sy = 14
+        sy = 13
     );
 
     // check ground collision
-    playery > 0 || (sy = 14, playery = -2);
+    playery > 0 || (sy = 13, playery = -2);
 
     // draw
     (x = (x, y, z) => {
@@ -67,7 +67,7 @@ setInterval(x = (x, y, z) => {
                         : z > top
                             // sky
                             ? win
-                                ? (x - 60) / (100 - y) * 5 + step / 4 & 1 && 4
+                                ? (x - 60) / (100 - y) * 5 + step / 5 & 1 && 4
                                 : 1
                             // tower
                             : Math.sin(r = Math.acos(x / 60 % 2 - 1)) * 4 - 6 + tower[mod((1 - r / Math.PI) * 180 + scrollx | 0)][div60(z) - 19 || step % 60 < 30 ? z : z % 12 + 60],
@@ -78,4 +78,4 @@ setInterval(x = (x, y, z) => {
                     data.data[((159 - y) * 120 + x) * 4 + 3] = 255;
         c.putImageData(data, 0, 0);
     })(120)
-}, scrollx = 42)
+}, scrollx = 33)
