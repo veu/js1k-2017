@@ -1,7 +1,7 @@
-mod = (x, y, z) => (x + 360) % 360;
+mod = (x, y, z) => (x + 360) % 360,
 between = (x, y, z) => x < y & y < z;
 wall = (x, y, z) => between(0, y / 6 % 51, 1) ? 7 : y % 6 && (x + (y / 6 & 1) * 6) % 12 && (wall(x + 1, y) ? 8 : 6);
-div60 = (x, y, z) => x / 60 | 0;
+div60 = (x, y, z) => x / 60 | 0,
 windowat = (x, y, z) => (z = div60(y) * 6 + div60(x)) * 28 % 64 < 39 - z / 4;
 visible = (x, y, z) => div60(y) - 19 || step % 60 < 30;
 
@@ -35,12 +35,13 @@ setInterval(x = (x, y, z) => {
     scrolly += (y = playery - scrolly) > 110 ? y - 110 : y < 5 && y - 5;
 
     // check tower top collision
-    win = playery > 1228 ? playery = c[sy = 0] = top : 0;
+    win = playery > 1228 ? playery = c[sy = 0] = top : 0,
 
     // check window collision
-    if (visible(playery) && windowat(mod(98 + scrollx), playery) & between(sy, playery % 60 - 30, 1) & between(0, (scrollx + 38) % 60, 52))
+    visible(playery) && windowat(mod(98 + scrollx), playery) & between(sy, playery % 60 - 30, 1) & between(0, (scrollx + 38) % 60, 52) && (
         playery += 30 - playery % 60,
-        sy = 14;
+        sy = 14
+    );
 
     // draw
     (x = (x, y, z) => {
