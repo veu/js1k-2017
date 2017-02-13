@@ -69,11 +69,11 @@ setInterval(x = (x, y, z) => {
                                 ? (x - 60) / (100 - y) * 5 + step / 5 & 1 && 4
                                 : 1
                             // tower
-                            : Math.sin(r = Math.acos(x / 60 % 2 - 1)) * 4 - 6 + tower[mod((1 - r / Math.PI) * 180 + scrollx | 0)][div60(z) - 19 || step % 60 < 30 ? z : z % 12 + 60],
+                            : Math.sin(r = Math.acos(x / 60 % 2 - 1)) * 8 - 6 + tower[mod((1 - r / Math.PI) * 180 + scrollx | 0)][div60(z) - 19 || step % 60 < 30 ? z : z % 12 + 60],
                     d = Math.min(1, -Math.min(0, Math.hypot(60 - x, 12 - z + playery) / 12 - 2)) * magic * l / 10,
-                    data.data[((159 - y) * 120 + x) * 4] = 30 + l * 8 + d * 3 | 0,
-                    data.data[((159 - y) * 120 + x) * 4 + 1] = 30 + l * 8 + d * 2 | 0,
-                    data.data[((159 - y) * 120 + x) * 4 + 2] = 40 + l * 16 + d | 0,
+                    data.data[((159 - y) * 120 + x) * 4] = l * 8 + d * 3 | 0,
+                    data.data[((159 - y) * 120 + x) * 4 + 1] = l * 8 + d * 2 | 0,
+                    data.data[((159 - y) * 120 + x) * 4 + 2] = l * 16 + d | 0,
                     data.data[((159 - y) * 120 + x) * 4 + 3] = 255;
         c.putImageData(data, 0, 0)
     })(step++)
