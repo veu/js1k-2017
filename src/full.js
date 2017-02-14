@@ -9,24 +9,14 @@ windowat = (x, y, z) => (x = (y / 60 | 0) * 6 + (mod(x) / 60 | 0)) * 28 % 64 < 3
 for (x = 1230 * 360; x--;)
     y = x / 360 | 0,
     tower[x] = (
-        y < 42 && between(126, mod(x), magic = 150)
-            // door
-            ? x & 3
-            // windows
-            : windowat(x, y) && (
-                between(24, y % 60, 30) && between(0, x % 60, 36)
-                    ? 10
-                    : between(30, y % 60, 54) && between(6, x % 60, 30)
-            )
-            // wall
-            || (between(0, y / 6 % 51, 1)
-                ? 7
-                : y % 6 && (x + (y / 6 & 1) * 6) % 12
-                    ? (1 + x + (y / 6 & 1) * 6) % 12
-                        ? 8
-                        : 6
-                    : 0
-            )
+        // door
+        y < 42 && between(126, mod(x), magic = 150) && x % 3 + 1
+        // windows
+        || windowat(x, y) && between(24, y % 60, 30) && between(0, x % 60, 36) && 10
+        || windowat(x, y) && between(30, y % 60, 54) && between(6, x % 60, 30)
+        // wall
+        || between(0, y / 6 % 51, 1) && 7
+        || y % 6 && (x + (y / 6 & 1) * 6) % 12 && ((1 + x + (y / 6 & 1) * 6) % 12 && 8 || 6)
     ) - x * x / Math.PI % 1;
 
 onkeydown = onkeyup = (x, y, z) => c[39 - x.which] = x.type[5];
