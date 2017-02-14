@@ -1,5 +1,4 @@
-tower = [playery = step = sy = 0];
-scrolly = -12;
+tower = [playery = step = sy = scrolly = 0];
 a.style = 'width:480px;height:640px;image-rendering:pixelated';
 
 mod = (x, y, z) => (x + 360) % 360,
@@ -64,7 +63,7 @@ setInterval(x = (x, y, z) => {
                 // world
                 : z < 0
                     // ground
-                    ? 2 + z / 6
+                    ? -z / 2
                     : 1230 < z
                         // sky
                         ? win
