@@ -63,22 +63,22 @@ setInterval(x = (x, y, z) => {
                 between(0, f = z - playery + !win * Math.sin(x % 120/2)*(14-Math.hypot(sy))/8|0, 24) && between(52, x % 120, 68) && !(f < 0 || 47 - e < f * 2 || f / 3 < 6 - e && e * 5 - 4 < f || 37 - f < e * 2 && f < e + 4)
                     ? e + 7 - f
                         ? 30 - f < e * 2 && f < e + 4
-                            ? 7
-                            : 2
-                        : 4
+                            ? 18
+                            : 3
+                        : 5
                 // world
                 : z < 0
                     // ground
-                    ? -z / 2
+                    ? z + 6
                     : 1230 < z
                         // sky
                         ? win
                             ? (x % 120 - 60) / (100 - y) * 5 + step / 5 & 1 && 4
                             : 1
                         // tower
-                        : Math.sin(r = Math.acos(x % 120 / 60 % 2 - 1)) * 8 - 6 + tower[(div60(z) - 19 || step % 60 < 30 ? z : z % 12 + 60) * 360 + mod((1 - r / Math.PI) * 180 + scrollx | 0)],
-                d = Math.min(1, -Math.min(0, Math.hypot(60 - x % 120, 12 - z + playery) / 12 - 2)) * magic * l / 50,
-                data.data.set([9 * d + l * 8, 6 * d + l * 8, l * 8 + d + l * 8, 255], x * 4);
+                        : Math.sin(r = Math.acos(x % 120 / 60 % 2 - 1)) * 9 - 12 + tower[(div60(z) - 19 || step % 60 < 30 ? z : z % 12 + 60) * 360 + mod((1 - r / Math.PI) * 180 + scrollx | 0)] * 2,
+                d = Math.min(1, -Math.min(0, Math.hypot(60 - x % 120, 12 - z + playery) / 12 - 2)) * magic * l / 80,
+                data.data.set([9 * d + l * 8, 6 * d + l * 8, l * 6 + d + l * 8, 255], x * 4);
         c.putImageData(data, 0, 0)
     })(step++)
 }, scrollx = 33)
