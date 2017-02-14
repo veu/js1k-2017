@@ -8,14 +8,14 @@ windowat = (x, y, z) => (x = (y / 60 | 0) * 6 + (mod(x) / 60 | 0)) * 28 % 64 < 3
 // precompute tower wall for faster rendering
 for (x = 1230 * 360; x--;)
     y = x / 360 | 0,
-    tower[x] =
+    tower[x] = (
         y < 42 && between(126, mod(x), magic = 150)
             // door
             ? x & 3
             // windows
             : windowat(x, y) && (
                 between(24, y % 60, 30) && between(0, x % 60, 36)
-                    ? 9
+                    ? 10
                     : between(30, y % 60, 54) && between(6, x % 60, 30)
             )
             // wall
@@ -26,7 +26,8 @@ for (x = 1230 * 360; x--;)
                         ? 8
                         : 6
                     : 0
-            );
+            )
+    ) - x * x / Math.PI % 1;
 
 onkeydown = onkeyup = (x, y, z) => c[39 - x.which] = x.type[5];
 
@@ -73,7 +74,7 @@ setInterval(x = (x, y, z) => {
                     : 1230 < z
                         // sky
                         ? win
-                            ? (x % 120 - 60) / (100 - y) * 5 + step / 5 & 1 && 4
+                            ? (x % 120 - 60) / (100 - y) * 5 + step / 5 & 1 && 5 - x * x / Math.PI % 1
                             : 1
                         // tower
                         : Math.sin(r = Math.acos(x % 120 / 60 % 2 - 1)) * 9 - 12 + tower[((z / 60 | 0) - 19 || step % 60 < 30 ? z : z % 12 + 60) * 360 + mod((1 - r / Math.PI) * 180 + scrollx | 0)] * 2,
