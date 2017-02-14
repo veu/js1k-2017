@@ -4,7 +4,7 @@ a.style = 'width:480px;height:640px;image-rendering:pixelated';
 mod = (x, y, z) => (x + 360) % 360,
 between = (x, y, z) => x < y && y < z;
 div60 = (x, y, z) => x / 60 | 0,
-windowat = (x, y, z) => (x = div60(y) * 6 + div60(x)) * 28 % 64 < 39 - x / 4;
+windowat = (x, y, z) => (x = div60(y) * 6 + div60(mod(x))) * 28 % 64 < 39 - x / 4;
 
 // precompute tower wall for faster rendering
 for (x = 1230 * 360; x--;)
@@ -12,18 +12,18 @@ for (x = 1230 * 360; x--;)
     tower[x] =
         y < 42 && between(126, mod(x), magic = 150)
             // door
-            ? mod(x) & 3
+            ? x & 3
             // windows
-            : windowat(mod(x), y) && (
-                between(24, y % 60, 30) && between(0, mod(x) % 60, 36)
+            : windowat(x, y) && (
+                between(24, y % 60, 30) && between(0, x % 60, 36)
                     ? 9
-                    : between(30, y % 60, 54) && between(6, mod(x) % 60, 30)
+                    : between(30, y % 60, 54) && between(6, x % 60, 30)
             )
             // wall
             || (between(0, y / 6 % 51, 1)
                 ? 7
-                : y % 6 && (mod(x) + (y / 6 & 1) * 6) % 12
-                    ? (1 + mod(x) + (y / 6 & 1) * 6) % 12
+                : y % 6 && (x + (y / 6 & 1) * 6) % 12
+                    ? (1 + x + (y / 6 & 1) * 6) % 12
                         ? 8
                         : 6
                     : 0
@@ -43,7 +43,7 @@ setInterval(x = (x, y, z) => {
     win = 1228 < playery ? playery = c[sy = 0] = 1230 : 0,
 
     // check window collision
-    (div60(z) - 19 || step % 60 < 30) && windowat(mod(98 + scrollx), playery) && between(sy, playery % 60 - 30, 1) && between(0, (scrollx + 38) % 60, 52) && (
+    (div60(z) - 19 || step % 60 < 30) && windowat(98 + scrollx, playery) && between(sy, playery % 60 - 30, 1) && between(0, (scrollx + 38) % 60, 52) && (
         playery += 30 - playery % 60,
         sy = 13
     );
