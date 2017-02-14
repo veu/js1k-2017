@@ -4,7 +4,7 @@ a.style = 'width:480px;height:640px;image-rendering:pixelated';
 mod = (x, y, z) => (x + 360) % 360,
 between = (x, y, z) => x < y && y < z;
 div60 = (x, y, z) => x / 60 | 0,
-windowat = (x, y, z) => (z = div60(y) * 6 + div60(x)) * 28 % 64 < 39 - z / 4;
+windowat = (x, y, z) => (x = div60(y) * 6 + div60(x)) * 28 % 64 < 39 - x / 4;
 
 // precompute tower wall for faster rendering
 for (x = 1230 * 360; x--;)
