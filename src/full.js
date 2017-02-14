@@ -37,7 +37,7 @@ setInterval(x = (x, y, z) => {
 
     // update position
     z = playery += sy = -Math.min(c[1] && magic && magic-- ? 2 : 8, 1 - sy);
-    scrolly += 110 < (y = playery - scrolly) ? y - 110 : y < 5 && y - 5;
+    scrolly += 110 < playery - scrolly ? playery - scrolly - 110 : playery - scrolly < 5 && playery - scrolly - 5;
 
     // check tower top collision
     win = 1228 < playery ? playery = c[sy = 0] = 1230 : 0,
