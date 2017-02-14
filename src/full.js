@@ -1,5 +1,5 @@
-tower = [playery = step = sy = scrolly = 0];
-a.style.cssText = 'width:480px;image-rendering:pixelated';
+playery = step = sy = scrolly = 0,
+tower = [a.style.cssText = 'width:480px;image-rendering:pixelated'];
 
 mod = (x, y, z) => (x + 360) % 360,
 between = (x, y, z) => x < y && y < z;
