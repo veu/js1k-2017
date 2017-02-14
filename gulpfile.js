@@ -51,7 +51,6 @@ gulp.task('minify', function () {
               'step',
               'sy',
               'tower',
-              'wall',
               'win',
               'windowat'
             ]

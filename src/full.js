@@ -5,7 +5,6 @@ mod = (x, y, z) => (x + 360) % 360,
 between = (x, y, z) => x < y && y < z;
 div60 = (x, y, z) => x / 60 | 0,
 windowat = (x, y, z) => (z = div60(y) * 6 + div60(x)) * 28 % 64 < 39 - z / 4;
-wall = (x, y, z) => between(0, y / 6 % 51, 1) ? 7 : y % 6 && (x + (y / 6 & 1) * 6) % 12 && (wall(x + 1, y) ? 8 : 6);
 
 // precompute tower wall for faster rendering
 for (x = 1230 * 360; x--;)
@@ -21,7 +20,14 @@ for (x = 1230 * 360; x--;)
                     : between(30, y % 60, 54) && between(6, mod(x) % 60, 30)
             )
             // wall
-            || wall(mod(x), y);
+            || (between(0, y / 6 % 51, 1)
+                ? 7
+                : y % 6 && (mod(x) + (y / 6 & 1) * 6) % 12
+                    ? (1 + mod(x) + (y / 6 & 1) * 6) % 12
+                        ? 8
+                        : 6
+                    : 0
+            );
 
 onkeydown = onkeyup = (x, y, z) => c[39 - x.which] = x.type[5];
 
