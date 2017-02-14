@@ -55,7 +55,8 @@ setInterval(x = (x, y, z) => {
     (x = (x, y, z) => {
         data = new ImageData(120, 160);
         for (x = 120 * 160; x--;)
-            y = x / -120 + 159 | 0,
+            y = x / -120 | 0,
+            y += 160,
             e = mod(~dir ? x % 120 - 53 : 69 - x % 120),
             z = scrolly + y,
             l =
