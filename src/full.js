@@ -48,7 +48,7 @@ setInterval(x = (x, y, z) => {
 
     // draw
     (x = (x, y, z) => {
-        for (data = c.createImageData(x = 120, 160); x--;)
+        for (data = new ImageData(x = 120, 160); x--;)
             for (e = mod(~dir ? x - 53 : 69 - x), y = 160; y--;)
                 z = scrolly + y,
                 l =
@@ -71,10 +71,7 @@ setInterval(x = (x, y, z) => {
                             // tower
                             : Math.sin(r = Math.acos(x / 60 % 2 - 1)) * 8 - 6 + tower[mod((1 - r / Math.PI) * 180 + scrollx | 0)][div60(z) - 19 || step % 60 < 30 ? z : z % 12 + 60],
                     d = Math.min(1, -Math.min(0, Math.hypot(60 - x, 12 - z + playery) / 12 - 2)) * magic * l / 50,
-                    data.data[((159 - y) * 120 + x) * 4] = l * 8 + d * 9 | 0,
-                    data.data[((159 - y) * 120 + x) * 4 + 1] = l * 8 + d * 6 | 0,
-                    data.data[((159 - y) * 120 + x) * 4 + 2] = l * 8 + d + l * 8 | 0,
-                    data.data[((159 - y) * 120 + x) * 4 + 3] = 255;
+                    data.data.set([l * 8 + d * 9, l * 8 + d * 6, l * 8 + d + l * 8, 255], ((159 - y) * 120 + x) * 4)
         c.putImageData(data, 0, 0)
     })(step++)
 }, scrollx = 33)
