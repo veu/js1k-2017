@@ -71,7 +71,7 @@ setInterval(x = (x, y, z) => {
                             // tower
                             : Math.sin(r = Math.acos(x / 60 % 2 - 1)) * 8 - 6 + tower[mod((1 - r / Math.PI) * 180 + scrollx | 0)][div60(z) - 19 || step % 60 < 30 ? z : z % 12 + 60],
                     d = Math.min(1, -Math.min(0, Math.hypot(60 - x, 12 - z + playery) / 12 - 2)) * magic * l / 50,
-                    data.data.set([l * 8 + d * 9, l * 8 + d * 6, l * 8 + d + l * 8, 255], ((159 - y) * 120 + x) * 4)
+                    data.data.set([9 * d + l * 8, 6 * d + l * 8, l * 8 + d + l * 8, 255], ((159 - y) * 120 + x) * 4)
         c.putImageData(data, 0, 0)
     })(step++)
 }, scrollx = 33)
