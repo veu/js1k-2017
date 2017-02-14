@@ -3,8 +3,7 @@ tower = [a.style.cssText = 'height:100%;image-rendering:pixelated'];
 
 mod = (x, y, z) => (x + 360) % 360,
 between = (x, y, z) => x < y && y < z;
-div60 = (x, y, z) => x / 60 | 0,
-windowat = (x, y, z) => (x = div60(y) * 6 + div60(mod(x))) * 28 % 64 < 39 - x / 4;
+windowat = (x, y, z) => (x = (y / 60 | 0) * 6 + (mod(x) / 60 | 0)) * 28 % 64 < 39 - x / 4;
 
 // precompute tower wall for faster rendering
 for (x = 1230 * 360; x--;)
@@ -43,7 +42,7 @@ setInterval(x = (x, y, z) => {
     win = 1228 < playery ? playery = c[sy = 0] = 1230 : 0,
 
     // check window collision
-    (div60(z) - 19 || step % 60 < 30) && windowat(98 + scrollx, playery) && between(sy, playery % 60 - 30, 1) && between(0, (scrollx + 38) % 60, 52) && (
+    ((z / 60 | 0) - 19 || step % 60 < 30) && windowat(98 + scrollx, playery) && between(sy, playery % 60 - 30, 1) && between(0, (scrollx + 38) % 60, 52) && (
         playery += 30 - playery % 60,
         sy = 13
     );
@@ -77,7 +76,7 @@ setInterval(x = (x, y, z) => {
                             ? (x % 120 - 60) / (100 - y) * 5 + step / 5 & 1 && 4
                             : 1
                         // tower
-                        : Math.sin(r = Math.acos(x % 120 / 60 % 2 - 1)) * 9 - 12 + tower[(div60(z) - 19 || step % 60 < 30 ? z : z % 12 + 60) * 360 + mod((1 - r / Math.PI) * 180 + scrollx | 0)] * 2,
+                        : Math.sin(r = Math.acos(x % 120 / 60 % 2 - 1)) * 9 - 12 + tower[((z / 60 | 0) - 19 || step % 60 < 30 ? z : z % 12 + 60) * 360 + mod((1 - r / Math.PI) * 180 + scrollx | 0)] * 2,
                 d = Math.min(1, -Math.min(0, Math.hypot(60 - x % 120, 12 - z + playery) / 12 - 2)) * magic * l / 80,
                 data.data.set([9 * d + l * 8, 6 * d + l * 8, l * 6 + d + l * 8, 255], x * 4);
         c.putImageData(data, 0, 0)

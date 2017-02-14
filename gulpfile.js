@@ -42,7 +42,6 @@ gulp.task('minify', function () {
               'between',
               'data',
               'dir',
-              'div60',
               'magic',
               'mod',
               'playery',
