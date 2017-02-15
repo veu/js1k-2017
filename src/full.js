@@ -33,12 +33,12 @@ setInterval(x = (x, y, z) => {
     (x = (x, y, z) => {
         data = new ImageData(120, 160);
         for (x = 120 * 160; x--;)
-            y = (x / -120 | 0) + 160,
+            y = 160 - (x / 120 | 0),
             e = mod(~dir ? x % 120 - 53 : 69 - x % 120),
             z = scrolly + y,
             l =
                 // player
-                between(0, f = z - playery + !win * Math.sin(x % 120/2)*(14-Math.hypot(sy))/8|0, 24) && between(52, x % 120, 68) && !(f < 0 || 47 - e < f * 2 || f / 3 < 6 - e && e * 5 - 4 < f || 37 - f < e * 2 && f < e + 4)
+                between(0, f = z - playery + !win * Math.sin(x % 120/2)*(14-Math.hypot(sy))/8|0, 24) && between(52, x % 120, 68) && !(f < 0 || 47 - e < f * 2 || f < 18 - e * 3 && e * 5 - 4 < f || 37 - f < e * 2 && f < e + 4)
                     ? e + 7 - f
                         ? 30 - f < e * 2 && f < e + 4
                             ? 18
