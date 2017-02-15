@@ -1,5 +1,5 @@
 playery = step = sy = scrolly = 0,
-a.style.cssText = 'height:100%;image-rendering:pixelated';
+a.style.cssText = 'height:100%;image-rendering:pixelated;image-rendering:-moz-crisp-edges';
 
 mod = (x, y, z) => (x + 360) % 360,
 between = (x, y, z) => x < y && y < z;
