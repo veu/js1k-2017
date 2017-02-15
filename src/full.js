@@ -66,8 +66,8 @@ setInterval(x = (x, y) => {
                             || between(f / 6 % 51, 1) && 7
                             || f % 6 && (e + (f / 6 & 1) * 6) % 12 && ((1 + e + (f / 6 & 1) * 6) % 12 && 8 || 6)
                         ) * 2 - (g = f * 360 + e) * g / Math.PI % 1 * 2,
-                d = Math.min(1, -Math.min(0, Math.hypot(60 - x % 120, 12 - z + playery) / 12 - 2)) * magic * l / 80,
-                data.data.set([9 * d + l * 8, 6 * d + l * 8, l * 6 + d + l * 8, 360], x * 4);
+            d = Math.min(1, -Math.min(0, Math.hypot(60 - x % 120, 12 - z + playery) / 12 - 2)) * magic * l / 80,
+            data.data.set([9 * d + l * 8, 6 * d + l * 8, l * 6 + d + l * 8, 360], x * 4);
         c.putImageData(data, 0, 0)
     })(step++)
 }, scrollx = 33)
