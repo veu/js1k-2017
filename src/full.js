@@ -5,9 +5,9 @@ mod = (x, y) => (x + 360) % 360,
 between = (x, y) => (0 < x && x < y),
 windowat = (x, y) => (x = (y / 60 | 0) * 6 + (mod(x) / 60 | 0)) * 28 % 64 < 39 - x / 4,
 
-magic = 150,
-
 onkeydown = onkeyup = (x, y) => (c[39 - x.which] = x.type[5]),
+
+data = new ImageData(120, magic = 160),
 
 setInterval(x = (x, y) => (
     dir = !c[2] - !c[0],
@@ -31,7 +31,6 @@ setInterval(x = (x, y) => (
 
     // draw
     (x = (x, y) => {
-        data = new ImageData(120, 160);
         for (x = 120 * 160; x--;)
             y = 160 - (x / 120 | 0),
             e = mod(~dir ? x % 120 - 53 : 69 - x % 120),
