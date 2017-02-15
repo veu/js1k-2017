@@ -1,23 +1,11 @@
 playery = step = sy = scrolly = 0,
-tower = [a.style.cssText = 'height:100%;image-rendering:pixelated'];
+a.style.cssText = 'height:100%;image-rendering:pixelated';
 
 mod = (x, y, z) => (x + 360) % 360,
 between = (x, y, z) => x < y && y < z;
 windowat = (x, y, z) => (x = (y / 60 | 0) * 6 + (mod(x) / 60 | 0)) * 28 % 64 < 39 - x / 4;
 
-// precompute tower wall for faster rendering
-for (x = 1230 * 360; x--;)
-    y = x / 360 | 0,
-    tower[x] = (
-        // door
-        y < 42 && between(126, mod(x), magic = 150) && x % 3 + 1
-        // windows
-        || windowat(x, y) && between(24, y % 60, 30) && between(0, x % 60, 36) && 10
-        || windowat(x, y) && between(30, y % 60, 54) && between(6, x % 60, 30)
-        // wall
-        || between(0, y / 6 % 51, 1) && 7
-        || y % 6 && (x + (y / 6 & 1) * 6) % 12 && ((1 + x + (y / 6 & 1) * 6) % 12 && 8 || 6)
-    ) - x * x / Math.PI % 1;
+magic = 150,
 
 onkeydown = onkeyup = (x, y, z) => c[39 - x.which] = x.type[5];
 
@@ -45,8 +33,7 @@ setInterval(x = (x, y, z) => {
     (x = (x, y, z) => {
         data = new ImageData(120, 160);
         for (x = 120 * 160; x--;)
-            y = x / -120 | 0,
-            y += 160,
+            y = (x / -120 | 0) + 160,
             e = mod(~dir ? x % 120 - 53 : 69 - x % 120),
             z = scrolly + y,
             l =
@@ -67,7 +54,18 @@ setInterval(x = (x, y, z) => {
                             ? (x % 120 - 60) / (100 - y) * 5 + step / 5 & 1 && 5 - x * x / Math.PI % 1
                             : 1
                         // tower
-                        : Math.sin(r = Math.acos(x % 120 / 60 % 2 - 1)) * 9 - 12 + tower[((z / 60 | 0) - 19 || step % 60 < 30 ? z : z % 12 + 60) * 360 + mod((1 - r / Math.PI) * 180 + scrollx | 0)] * 2,
+                        : Math.sin(r = Math.acos(x % 120 / 60 % 2 - 1)) * 9 - 12 + (
+                            e = mod((1 - r / Math.PI) * 180 + scrollx | 0),
+                            f = (z / 60 | 0) - 19 || step % 60 < 30 ? z : z % 12 + 60,
+                            // door
+                            f < 42 && between(126, e, 150) && e % 3 + 1
+                            // windows
+                            || windowat(e, f) && between(24, f % 60, 30) && between(0, e % 60, 36) && 10
+                            || windowat(e, f) && between(30, f % 60, 54) && between(6, e % 60, 30)
+                            // wall
+                            || between(0, f / 6 % 51, 1) && 7
+                            || f % 6 && (e + (f / 6 & 1) * 6) % 12 && ((1 + e + (f / 6 & 1) * 6) % 12 && 8 || 6)
+                        ) * 2 - (g = f * 360 + e) * g / Math.PI % 1 * 2,
                 d = Math.min(1, -Math.min(0, Math.hypot(60 - x % 120, 12 - z + playery) / 12 - 2)) * magic * l / 80,
                 data.data.set([9 * d + l * 8, 6 * d + l * 8, l * 6 + d + l * 8, 255], x * 4);
         c.putImageData(data, 0, 0)
