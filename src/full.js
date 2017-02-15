@@ -1,21 +1,21 @@
 playery = step = sy = scrolly = 0,
-a.style.cssText = 'height:100%;image-rendering:pixelated;image-rendering:-moz-crisp-edges';
+a.style.cssText = 'height:100%;image-rendering:pixelated;image-rendering:-moz-crisp-edges',
 
 mod = (x, y) => (x + 360) % 360,
-between = (x, y) => 0 < x && x < y;
-windowat = (x, y) => (x = (y / 60 | 0) * 6 + (mod(x) / 60 | 0)) * 28 % 64 < 39 - x / 4;
+between = (x, y) => (0 < x && x < y),
+windowat = (x, y) => (x = (y / 60 | 0) * 6 + (mod(x) / 60 | 0)) * 28 % 64 < 39 - x / 4,
 
 magic = 150,
 
-onkeydown = onkeyup = (x, y) => c[39 - x.which] = x.type[5];
+onkeydown = onkeyup = (x, y) => (c[39 - x.which] = x.type[5]),
 
-setInterval(x = (x, y) => {
-    dir = !c[2] - !c[0];
-    scrollx = mod(scrollx + dir * 4);
+setInterval(x = (x, y) => (
+    dir = !c[2] - !c[0],
+    scrollx = mod(scrollx + dir * 4),
 
     // update position
-    z = playery += sy = -Math.min(c[1] && magic && magic-- ? 2 : 8, 1 - sy);
-    scrolly += 110 < playery - scrolly ? playery - scrolly - 110 : playery - scrolly < 5 && playery - scrolly - 5;
+    z = playery += sy = -Math.min(c[1] && magic && magic-- ? 2 : 8, 1 - sy),
+    scrolly += 110 < playery - scrolly ? playery - scrolly - 110 : playery - scrolly < 5 && playery - scrolly - 5,
 
     // check tower top collision
     win = 1228 < playery ? playery = c[sy = 0] = 1230 : 0,
@@ -24,10 +24,10 @@ setInterval(x = (x, y) => {
     ((z / 60 | 0) - 19 || step % 60 < 30) && windowat(98 + scrollx, playery) && between(playery % 60 - 30 - sy, 1 - sy) && between((scrollx + 38) % 60, 52) && (
         playery += 30 - playery % 60,
         sy = 13
-    );
+    ),
 
     // check ground collision
-    0 < playery || (sy = 13, playery = -2);
+    0 < playery || (sy = 13, playery = -2),
 
     // draw
     (x = (x, y) => {
@@ -70,4 +70,4 @@ setInterval(x = (x, y) => {
             data.data.set([9 * d + l * 8, 6 * d + l * 8, 6 * l + d + l * 8, 6 * 60], x * 4);
         c.putImageData(data, 0, 0)
     })(step++)
-}, scrollx = 33)
+), scrollx = 33)
