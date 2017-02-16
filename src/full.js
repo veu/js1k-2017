@@ -43,28 +43,28 @@ setInterval(x = (x, y) => (
                             ? 18
                             : 3 - (x + z) % 2 / 3
                         : 5
-                // world
-                : z < 0
-                    // ground
-                    ? z + 6
-                    : 1230 < z
-                        // sky
-                        ? win
-                            ? (x % 120 - 60) / (100 - y) * 5 + step / 5 & 1 && 5 - x * x / Math.PI % 1
-                            : 1
-                        // tower
-                        : Math.sin(r = Math.acos(x % 120 / 60 % 2 - 1)) * 9 - 12 + (
-                            e = mod((1 - r / Math.PI) * 180 + scrollx | 0),
-                            f = (z / 60 | 0) - 19 || step % 60 < 30 ? z : z % 12 + 60,
-                            // door
-                            f < 42 && between(e - 126, 24) && e % 3 + 1
-                            // windows
-                            || windowat(e, f) && between(f % 60 - 24, 6) && between(e % 60, 36) && 10
-                            || windowat(e, f) && between(f % 60 - 30, 24) && between(e % 60 - 6, 24)
-                            // wall
-                            || between(f / 6 % 51, 1) && 7
-                            || f % 6 && (e + (f / 6 & 1) * 6) % 12 && ((1 + e + (f / 6 & 1) * 6) % 12 && 8 || 6)
-                        ) * 2 - (g = f * 360 + e) * g / Math.PI % 1 * 2,
+                    // world
+                    : z < 0
+                        // ground
+                        ? z + 6
+                        : 1230 < z
+                            // sky
+                            ? win
+                                ? (x % 120 - 60) / (100 - y) * 5 + step / 5 & 1 && 5 - x * x / Math.PI % 1
+                                : 1
+                            // tower
+                            : Math.sin(r = Math.acos(x % 120 / 60 % 2 - 1)) * 9 - 12 + (
+                                e = mod((1 - r / Math.PI) * 180 + scrollx | 0),
+                                f = (z / 60 | 0) - 19 || step % 60 < 30 ? z : z % 12 + 60,
+                                // door
+                                f < 42 && between(e - 126, 24) && e % 3 + 1
+                                // windows
+                                || windowat(e, f) && between(f % 60 - 24, 6) && between(e % 60, 36) && 10
+                                || windowat(e, f) && between(f % 60 - 30, 24) && between(e % 60 - 6, 24)
+                                // wall
+                                || between(f / 6 % 51, 1) && 7
+                                || f % 6 && (e + (f / 6 & 1) * 6) % 12 && ((1 + e + (f / 6 & 1) * 6) % 12 && 8 || 6)
+                            ) * 2 - (g = f * 360 + e) * g / Math.PI % 1 * 2,
             d = Math.min(1, -Math.min(0, Math.hypot(60 - x % 120, 12 - z + playery) / 12 - 2)) * magic * l / 80,
             data.data.set([9 * d + l * 8, 6 * d + l * 8, 6 * l + d + l * 8, 6 * 60], x * 4);
         c.putImageData(data, 0, 0)
