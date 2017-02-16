@@ -31,13 +31,14 @@ setInterval(x = (x, y) => (
 
     // draw
     (x = (x, y) => {
-        for (x = 120 * 160; x--;)
-            y = 160 - (x / 120 | 0),
-            e = mod(~dir ? x % 120 - 53 : 69 - x % 120),
+        for (i = 120 * 160; i--;)
+            x = i % 120,
+            y = 160 + (x - i) / 120,
+            e = mod(~dir ? x - 53 : 69 - x),
             z = scrolly + y,
             l =
                 // player
-                between(f = z - playery + !win * Math.sin(x % 120/2)*(14-Math.hypot(sy))/8|0, 24) && between(x % 120 - 52, 16) && !(f < 0 || 47 - e < f * 2 || f < 18 - e * 3 && e * 5 - 4 < f || 37 - f < e * 2 && f < e + 4)
+                between(f = z - playery + !win * Math.sin(x / 2)*(14-Math.hypot(sy))/8|0, 24) && between(x - 52, 16) && !(f < 0 || 47 - e < f * 2 || f < 18 - e * 3 && e * 5 - 4 < f || 37 - f < e * 2 && f < e + 4)
                     ? e + 7 - f
                         ? 30 - f < e * 2 && f < e + 4
                             ? 18
@@ -50,10 +51,10 @@ setInterval(x = (x, y) => (
                         : 1230 < z
                             // sky
                             ? win
-                                ? (x % 120 - 60) / (100 - y) * 5 + step / 5 & 1 && 5 - x * x / Math.PI % 1
+                                ? (x - 60) / (100 - y) * 5 + step / 5 & 1 && 5 - i * i / Math.PI % 1
                                 : 1
                             // tower
-                            : Math.sin(r = Math.acos(x % 120 / 60 % 2 - 1)) * 9 - 12 + (
+                            : Math.sin(r = Math.acos(x / 60 % 2 - 1)) * 9 - 12 + (
                                 e = mod((1 - r / Math.PI) * 180 + scrollx | 0),
                                 f = (z / 60 | 0) - 19 || step % 60 < 30 ? z : z % 12 + 60,
                                 // door
@@ -65,8 +66,8 @@ setInterval(x = (x, y) => (
                                 || between(f / 6 % 51, 1) && 7
                                 || f % 6 && (e + (f / 6 & 1) * 6) % 12 && (1 - (e + (f / 6 & 1) * 6) % 12 && 8 || 6)
                             ) * 2 - (g = f * 360 + e) * g / Math.PI % 1 * 2,
-            d = Math.min(1, -Math.min(0, Math.hypot(60 - x % 120, 12 - z + playery) / 12 - 2)) * magic * l / 80,
-            data.data.set([9 * d + l * 8, 6 * d + l * 8, 6 * l + d + l * 8, 6 * 60], x * 4);
+            d = Math.min(1, -Math.min(0, Math.hypot(60 - x, 12 - z + playery) / 12 - 2)) * magic * l / 80,
+            data.data.set([9 * d + l * 8, 6 * d + l * 8, 6 * l + d + l * 8, 6 * 60], i * 4);
         c.putImageData(data, 0, 0)
     })(step++)
 ), scrollx = 33)
