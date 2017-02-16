@@ -46,7 +46,7 @@ setInterval(x = (x, y) => (
                     // world
                     : z < 0
                         // ground
-                        ? z + 6
+                        ? z + 6 - (x + z) % 2 / 3
                         : 1230 < z
                             // sky
                             ? win
