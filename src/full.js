@@ -22,8 +22,7 @@ setInterval(x = (x, y) => (
 
     // check window collision
     ((z / 60 | 0) - 19 || step % 60 < 30) && windowat(98 + scrollx, playery) && between(playery % 60 - 30 - sy, 1 - sy) && between((scrollx + 38) % 60, 52) && (
-        playery += 30 - playery % 60,
-        sy = 13
+        sy = 13, playery += 30 - playery % 60
     ),
 
     // check ground collision
