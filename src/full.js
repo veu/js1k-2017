@@ -28,7 +28,7 @@ setInterval(x = (x, y) => (
     // check ground collision
     0 < playery || (sy = 13, playery = -2),
 
-    step++,
+    step += 1,
 
     // draw
     requestAnimationFrame(x = (x, y) => {
