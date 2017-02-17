@@ -1,75 +1,73 @@
-i60 = 60;
+playery = step = sy = scrolly = 0,
+a.style.cssText = 'height:100%;image-rendering:pixelated;image-rendering:-moz-crisp-edges',
 
-mod = x => (x + i360) % i360;
-between = (x, y, z) => x < y & y < z;
-wall = (x, y) => between(0, y / 6 % 51, 1) ? 7 : y % 6 && (x + (y / 6 & 1) * 6) % 12 && (wall(x + 1, y) ? 8 : 6);
-div60 = x => x / i60 | 0;
-windowat = (x, y) => (z = div60(y) * 6 + div60(x)) * 28 % 64 < 39 - z / 4;
-visible = y => div60(y) - 19 || step % i60 < i30;
+mod = (x, y) => (x + 360) % 360,
+between = (x, y) => (0 < x && x < y),
+windowat = (x, y) => (x = (y / 60 | 0) * 6 + (mod(x) / 60 | 0)) * 28 % 64 < 39 - x / 4,
 
-// precompute tower wall for faster rendering
-tower = [{min: min, sin: sin, hypot: hypot, PI: PI} = M = Math];
-for (step = i360 = 360; playery = win = step--; scrolly = -12)
-    for (tower[step] = [sy = top = 1231]; sy--;)
-        tower[step][sy] =
-            sy < 42 & between(126, step, magic = 150)
-                // door
-                ? step & 3
-                // windows
-                : windowat(step, sy) && (
-                    between(24, sy % i60, i30 = 30) & between(0, step % i60, 36)
-                        ? 9
-                        : between(i30, sy % i60, 54) & between(6, step % i60, i30)
-                )
-                // wall
-                || wall(step, sy);
+onkeydown = onkeyup = (x, y) => (c[39 - x.which] = x.type[5]),
 
-onkeydown = onkeyup = e => c[39 - e.which] = e.type[5];
+data = new ImageData(120, magic = 160),
 
-setInterval(e => {
-    step++;
-    dir = !c[2] - !c[0];
-    scrollx = mod(scrollx + dir * 4);
+setInterval(x = (x, y) => (
+    scrollx = mod(scrollx + (dir = !c[2] - !c[0]) * 4),
 
     // update position
-    playery += sy = -min(c[1] && magic && magic-- ? 3 : 10, 1 - sy);
-    scrolly += (y = playery - scrolly) > 110 ? y - 110 : y < 5 && y - 5;
+    z = playery += sy = -Math.min(c[1] && magic && magic-- ? 2 : 8, 1 - sy),
+    scrolly += 110 < playery - scrolly ? playery - scrolly - 110 : playery - scrolly < 5 && playery - scrolly - 5,
 
     // check tower top collision
-    win = playery > 1228 ? playery = c[sy = 0] = top : 0;
+    win = 1228 < playery ? playery = c[sy = 0] = 1230 : 0,
 
     // check window collision
-    if (visible(playery) && windowat(mod(98 + scrollx), playery) & between(sy, playery % i60 - i30, 1) & between(0, (scrollx + 38) % i60, 52))
-        playery += i30 - playery % i60,
-        sy = 14;
+    e = 98 + scrollx,
+    ((z / 60 | 0) - 19 || step % 60 < 30) && windowat(e, z) && between(z % 60 - 30 - sy, 1 - sy) && between((scrollx + 38) % 60, 52) && (
+        sy = 13, playery += 30 - playery % 60
+    ),
+
+    // check ground collision
+    0 < playery || (sy = 13, playery = -2),
+
+    step += 1,
 
     // draw
-    (x => {
-             // check ground collision
-        for (playery > 0 || (sy = 14, playery = -2); x--;)
-            for (e = mod(~dir ? x - 53 : 69 - x), y = 160; y--; c.fillRect(x * 4, 636 - y * 4, 4, 4))
-                z = scrolly + y,
-                // calculate light around player
-                d = min(1, -min(0, hypot(i60 - x, 12 - z + playery) / 12 - 2)) * magic,
-                c.fillStyle = `hsl(${240 + d},25%,${d / 6 + 9 * (
-                    // player
-                    between(0, f = z - playery + !win * sin(x/2)*(14-hypot(sy))/8|0, 24) & between(52, x, 68) & !(f < 0 | 47 - e < f * 2 | f / 3 < 6 - e & f > e * 5 - 4 | e * 2 > 37 - f & e + 4 > f)
-                        ? e + 7 - f
-                            ? e * 2 > i30 - f & e + 4 > f
-                                ? 9
-                                : 1
-                            : 3
+    requestAnimationFrame(x = (x, y) => {
+        for (i = 120 * 160; i--;)
+            x = i % 120,
+            y = 160 + (x - i) / 120,
+            e = mod(~dir ? x - 53 : 69 - x),
+            z = scrolly + y,
+            l =
+                // player
+                between(f = z - playery + !win * Math.sin(x / 2)*(c[1]?1:14-Math.hypot(sy))/8|0, 24) && between(x - 52, 16) && !(f < 0 || 47 - e < f * 2 || f < 18 - e * 3 && e * 5 - 4 < f || 37 - f < e * 2 && f < e + 4)
+                    ? e + 7 - f
+                        ? 30 - f < e * 2 && f < e + 4
+                            ? 18
+                            : 3 - (x + z) % 2 / 4
+                        : 5
                     // world
                     : z < 0
                         // ground
-                        ? 2 + z / 6
-                        : z > top
+                        ? z + 6 - (x + z) % 2 / 3
+                        : 1230 < z
                             // sky
                             ? win
-                                ? M.atan2(120 - y, x - i60) * 8 + scrollx/9*PI & 1 && 4
+                                ? (x - 60) / (100 - y) * 5 + step / 5 & 1 && 5 - i * i / Math.PI % 1
                                 : 1
                             // tower
-                            : sin(a = M.acos(x / i60 % 2 - 1)) * 4 - 6 + tower[mod((1 - a / PI) * 180 + scrollx | 0)][visible(z) ? z : z % 12 + i60]
-                )}%)`
-    })(120)
-}, scrollx = 42)
+                            : Math.sin(r = Math.acos(x / 60 % 2 - 1)) * 9 - 12 + (
+                                e = mod((1 - r / Math.PI) * 180 + scrollx | 0),
+                                // door
+                                z < 42 && between(e - 126, 24) && e % 3 + 1
+                                // windows
+                                || ((z / 60 | 0) - 19 || step % 60 < 30) && windowat(e, z) && between(z % 60 - 30 + 6, 6) && between(e % 60, 36) && 10
+                                || ((z / 60 | 0) - 19 || step % 60 < 30) && windowat(e, z) && between(z % 60 - 30, 24) && between(e % 60 - 6, 24)
+                                // wall
+                                || between(z / 6 % 51, 1) && 7
+                                || z % 6 && (e + z - z % 6) % 12 && (11 - (e + z - z % 6) % 12 && 8 || 6)
+                            ) * 2 - (g = z * 360 + e) * g / Math.PI % 1 * 2,
+            d = Math.min(1, -Math.min(0, Math.hypot(60 - x, 12 - z + playery) / 12 - 2)) * magic * l / 80,
+            data.data.set([9 * d + l * 8, 6 * d + l * 8, 6 * l + d + l * 8, 6 * 60], i * 4);
+        c.putImageData(data, 0, 0)
+    })
+), scrollx = 33)
