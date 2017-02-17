@@ -2,6 +2,8 @@
 
 A platformer in 1023b for [JS1k 2017](http://js1k.com/2017-magic/).
 
+![Screenshot](screenshot.png)
+
 ## Description
 
 Controls: left and right arrow keys to move, up to levitate.
