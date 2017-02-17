@@ -39,7 +39,7 @@ setInterval(x = (x, y) => (
             z = scrolly + y,
             l =
                 // player
-                between(f = z - playery + !win * Math.sin(x / 2)*(14-Math.hypot(sy))/8|0, 24) && between(x - 52, 16) && !(f < 0 || 47 - e < f * 2 || f < 18 - e * 3 && e * 5 - 4 < f || 37 - f < e * 2 && f < e + 4)
+                between(f = z - playery + !win * Math.sin(x / 2)*(c[1]?1:14-Math.hypot(sy))/8|0, 24) && between(x - 52, 16) && !(f < 0 || 47 - e < f * 2 || f < 18 - e * 3 && e * 5 - 4 < f || 37 - f < e * 2 && f < e + 4)
                     ? e + 7 - f
                         ? 30 - f < e * 2 && f < e + 4
                             ? 18
