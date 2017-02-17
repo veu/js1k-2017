@@ -28,8 +28,10 @@ setInterval(x = (x, y) => (
     // check ground collision
     0 < playery || (sy = 13, playery = -2),
 
+    step++,
+
     // draw
-    (x = (x, y) => {
+    requestAnimationFrame(x = (x, y) => {
         for (i = 120 * 160; i--;)
             x = i % 120,
             y = 160 + (x - i) / 120,
@@ -67,5 +69,5 @@ setInterval(x = (x, y) => (
             d = Math.min(1, -Math.min(0, Math.hypot(60 - x, 12 - z + playery) / 12 - 2)) * magic * l / 80,
             data.data.set([9 * d + l * 8, 6 * d + l * 8, 6 * l + d + l * 8, 6 * 60], i * 4);
         c.putImageData(data, 0, 0)
-    })(step++)
+    })
 ), scrollx = 33)
