@@ -10,8 +10,7 @@ onkeydown = onkeyup = (x, y) => (c[39 - x.which] = x.type[5]),
 data = new ImageData(120, magic = 160),
 
 setInterval(x = (x, y) => (
-    dir = !c[2] - !c[0],
-    scrollx = mod(scrollx + dir * 4),
+    scrollx = mod(scrollx + (dir = !c[2] - !c[0]) * 4),
 
     // update position
     z = playery += sy = -Math.min(c[1] && magic && magic-- ? 2 : 8, 1 - sy),
@@ -21,7 +20,8 @@ setInterval(x = (x, y) => (
     win = 1228 < playery ? playery = c[sy = 0] = 1230 : 0,
 
     // check window collision
-    ((z / 60 | 0) - 19 || step % 60 < 30) && windowat(98 + scrollx, playery) && between(playery % 60 - 30 - sy, 1 - sy) && between((scrollx + 38) % 60, 52) && (
+    e = 98 + scrollx,
+    ((z / 60 | 0) - 19 || step % 60 < 30) && windowat(e, z) && between(z % 60 - 30 - sy, 1 - sy) && between((scrollx + 38) % 60, 52) && (
         sy = 13, playery += 30 - playery % 60
     ),
 
@@ -60,7 +60,7 @@ setInterval(x = (x, y) => (
                                 // door
                                 z < 42 && between(e - 126, 24) && e % 3 + 1
                                 // windows
-                                || ((z / 60 | 0) - 19 || step % 60 < 30) && windowat(e, z) && between(z % 60 - 24, 6) && between(e % 60, 36) && 10
+                                || ((z / 60 | 0) - 19 || step % 60 < 30) && windowat(e, z) && between(z % 60 - 30 + 6, 6) && between(e % 60, 36) && 10
                                 || ((z / 60 | 0) - 19 || step % 60 < 30) && windowat(e, z) && between(z % 60 - 30, 24) && between(e % 60 - 6, 24)
                                 // wall
                                 || between(z / 6 % 51, 1) && 7
