@@ -49,9 +49,7 @@ setInterval(x = (x, y) => (
                         ? z + 6 - (x + z) % 2 / 3
                         : 1230 < z
                             // sky
-                            ? win
-                                ? (x - 60) / (100 - y) * 5 + step / 5 & 1 && 5 - i * i / Math.PI % 1
-                                : 1
+                            ? !win || (x - 60) / (100 - y) * 5 + step / 5 & 1 && 5 - i * i / Math.PI % 1
                             // tower
                             : Math.sin(r = Math.acos(x / 60 % 2 - 1)) * 9 - 12 + (
                                 e = (((1 - r / Math.PI) * 180 + scrollx | 0) + 360) % 360,
