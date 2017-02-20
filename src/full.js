@@ -2,7 +2,6 @@ playery = step = sy = scrolly = 0,
 a.style.cssText = 'height:100%;image-rendering:pixelated;image-rendering:-moz-crisp-edges',
 
 between = (x, y) => (0 < x && x < y),
-windowat = (x, y) => (x = (y / 60 | 0) * 6 + (((x + 360) % 360) / 60 | 0)) * 28 % 64 < 39 - x / 4,
 
 onkeydown = onkeyup = (x, y) => (c[39 - x.which] = x.type[5]),
 
@@ -20,7 +19,7 @@ setInterval(x = (x, y) => (
 
     // check window collision
     e = 98 + scrollx,
-    ((z / 60 | 0) - 19 || step % 60 < 30) && windowat(e, z) && between(z % 60 - 30 - sy, 1 - sy) && between((scrollx + 38) % 60, 52) && (
+    ((z / 60 | 0) - 19 || step % 60 < 30) && ((g = (z / 60 | 0) * 6 + (((e + 360) % 360) / 60 | 0)) * 28 % 64 < 39 - g / 4) && between(z % 60 - 30 - sy, 1 - sy) && between((scrollx + 38) % 60, 52) && (
         sy = 13, playery += 30 - playery % 60
     ),
 
@@ -59,8 +58,8 @@ setInterval(x = (x, y) => (
                                 // door
                                 z < 42 && between(e - 126, 24) && e % 3 + 1
                                 // windows
-                                || ((z / 60 | 0) - 19 || step % 60 < 30) && windowat(e, z) && between(z % 60 - 30 + 6, 6) && between(e % 60, 36) && 10
-                                || ((z / 60 | 0) - 19 || step % 60 < 30) && windowat(e, z) && between(z % 60 - 30, 24) && between(e % 60 - 6, 24)
+                                || ((z / 60 | 0) - 19 || step % 60 < 30) && ((g = (z / 60 | 0) * 6 + (((e + 360) % 360) / 60 | 0)) * 28 % 64 < 39 - g / 4) && between(z % 60 - 30 + 6, 6) && between(e % 60, 36) && 10
+                                || ((z / 60 | 0) - 19 || step % 60 < 30) && ((g = (z / 60 | 0) * 6 + (((e + 360) % 360) / 60 | 0)) * 28 % 64 < 39 - g / 4) && between(z % 60 - 30, 24) && between(e % 60 - 6, 24)
                                 // wall
                                 || between(z / 6 % 51, 1) && 7
                                 || z % 6 && (e + z - z % 6) % 12 && (11 - (e + z - z % 6) % 12 && 8 || 6)

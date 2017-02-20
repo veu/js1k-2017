@@ -48,8 +48,7 @@ gulp.task('minify', function () {
               'scrolly',
               'step',
               'sy',
-              'win',
-              'windowat'
+              'win'
             ]
           }
         ] 
