@@ -43,7 +43,6 @@ gulp.task('minify', function () {
               'data',
               'dir',
               'magic',
-              'mod',
               'playery',
               'scrollx',
               'scrolly',

@@ -1,16 +1,15 @@
 playery = step = sy = scrolly = 0,
 a.style.cssText = 'height:100%;image-rendering:pixelated;image-rendering:-moz-crisp-edges',
 
-mod = (x, y) => (x + 360) % 360,
 between = (x, y) => (0 < x && x < y),
-windowat = (x, y) => (x = (y / 60 | 0) * 6 + (mod(x) / 60 | 0)) * 28 % 64 < 39 - x / 4,
+windowat = (x, y) => (x = (y / 60 | 0) * 6 + (((x + 360) % 360) / 60 | 0)) * 28 % 64 < 39 - x / 4,
 
 onkeydown = onkeyup = (x, y) => (c[39 - x.which] = x.type[5]),
 
 data = new ImageData(120, magic = 160),
 
 setInterval(x = (x, y) => (
-    scrollx = mod(scrollx + (dir = !c[2] - !c[0]) * 4),
+    scrollx = ((scrollx + (dir = !c[2] - !c[0]) * 4) + 360) % 360,
 
     // update position
     z = playery += sy = -Math.min(c[1] && magic && magic-- ? 2 : 8, 1 - sy),
@@ -35,7 +34,7 @@ setInterval(x = (x, y) => (
         for (i = 120 * 160; i--;)
             x = i % 120,
             y = 160 + (x - i) / 120,
-            e = mod(~dir ? x - 53 : 69 - x),
+            e = ((~dir ? x - 53 : 69 - x) + 360) % 360,
             z = scrolly + y,
             l =
                 // player
@@ -56,7 +55,7 @@ setInterval(x = (x, y) => (
                                 : 1
                             // tower
                             : Math.sin(r = Math.acos(x / 60 % 2 - 1)) * 9 - 12 + (
-                                e = mod((1 - r / Math.PI) * 180 + scrollx | 0),
+                                e = (((1 - r / Math.PI) * 180 + scrollx | 0) + 360) % 360,
                                 // door
                                 z < 42 && between(e - 126, 24) && e % 3 + 1
                                 // windows
