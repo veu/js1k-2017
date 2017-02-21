@@ -37,7 +37,7 @@ setInterval(x = (x, y) => (
             z = scrolly + y,
             l =
                 // player
-                between(f = z - playery + !win * Math.sin(x / 2)*(c[1]?1:14-Math.hypot(sy))/8|0, 24) && between(x - 52, 16) && !(f < 0 || 47 - e < f * 2 || f < 18 - e * 3 && e * 5 - 4 < f || 37 - f < e * 2 && f < e + 4)
+                between(f = z - playery + !win * Math.sin(e / 2 + 14)*(c[1]?1:14-Math.hypot(sy))/8|0, 24) && between(e + 1, 16) && !(f < 0 || 47 - e < f * 2 || f < 18 - e * 3 && e * 5 - 4 < f || 37 - f < e * 2 && f < e + 4)
                     ? e + 7 - f
                         ? 30 - f < e * 2 && f < e + 4
                             ? 18
@@ -51,8 +51,8 @@ setInterval(x = (x, y) => (
                             // sky
                             ? !win || (x - 60) / (100 - y) * 5 + step / 5 & 1 && 5 - i * i / Math.PI % 1
                             // tower
-                            : Math.sin(r = Math.acos(x / 60 % 2 - 1)) * 9 - 12 + (
-                                e = (((1 - r / Math.PI) * 180 + scrollx | 0) + 360) % 360,
+                            : Math.sin(e = Math.acos(x / 60 % 2 - 1)) * 9 - 12 + (
+                                e = (((1 - e / Math.PI) * 180 + scrollx | 0) + 360) % 360,
                                 // door
                                 z < 42 && between(e - 126, 24) && e % 3 + 1
                                 // windows
