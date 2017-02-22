@@ -41,7 +41,6 @@ gulp.task('minify', function () {
             namesToReplace: [
               'between',
               'data',
-              'dir',
               'magic',
               'playery',
               'scrollx',

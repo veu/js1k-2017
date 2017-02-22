@@ -8,7 +8,7 @@ onkeydown = onkeyup = (x, y) => (c[39 - x.which] = x.type[5]),
 data = new ImageData(120, magic = 160),
 
 setInterval(x = (x, y) => (
-    scrollx = ((scrollx + (dir = !c[2] - !c[0]) * 4) + 360) % 360,
+    scrollx = (scrollx + (!c[2] - !c[0]) * 4 + 360) % 360,
 
     // update position
     z = playery += sy = -Math.min(c[1] && magic && magic-- ? 2 : 8, 1 - sy),
@@ -33,7 +33,7 @@ setInterval(x = (x, y) => (
         for (i = 120 * 160; i--;)
             x = i % 120,
             y = 160 + (x - i) / 120,
-            e = ((~dir ? x - 53 : 69 - x) + 360) % 360,
+            e = ((c[2] ? 69 - x : x - 53) + 360) % 360,
             z = scrolly + y,
             l =
                 // player
@@ -56,8 +56,8 @@ setInterval(x = (x, y) => (
                                 // door
                                 z < 42 && between(e - 126, 24) && e % 3 + 1
                                 // windows
-                                || ((z / 60 | 0) - 19 || step % 60 < 30) && ((g = (z / 60 | 0) * 6 + (((e + 360) % 360) / 60 | 0)) * 28 % 64 < 39 - g / 4) && between(z % 60 - 30 + 6, 6) && between(e % 60, 36) && 10
-                                || ((z / 60 | 0) - 19 || step % 60 < 30) && ((g = (z / 60 | 0) * 6 + (((e + 360) % 360) / 60 | 0)) * 28 % 64 < 39 - g / 4) && between(z % 60 - 30, 24) && between(e % 60 - 6, 24)
+                                || ((z / 60 | 0) - 19 || step % 60 < 30) && (g = (z / 60 | 0) * 6 + (((e + 360) % 360) / 60 | 0)) * 28 % 64 < 39 - g / 4 && between(z % 60 - 30 + 6, 6) && between(e % 60, 36) && 10
+                                || ((z / 60 | 0) - 19 || step % 60 < 30) && (g = (z / 60 | 0) * 6 + (((e + 360) % 360) / 60 | 0)) * 28 % 64 < 39 - g / 4 && between(z % 60 - 30, 24) && between(e % 60 - 6, 24)
                                 // wall
                                 || between(z / 6 % 51, 1) && 6
                                 || z % 6 && (z % 6 - z - e) % 12 && (11 + (z % 6 - z - e) % 12 && 8 + (z / 6 | 0) * ((z % 6 - z - e) / 12 | 0) / Math.PI % 1 || 6)
