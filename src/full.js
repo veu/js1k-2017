@@ -51,7 +51,7 @@ setInterval(x = (x, y) => (
                             // sky
                             ? !win || (x - 60) / (100 - y) * 5 + step / 5 & 1 && 5 - i * i / Math.PI % 1
                             // tower
-                            : Math.sin(e = Math.acos(x / 60 % 2 - 1)) * 9 - 12 + (
+                            : Math.sin(e = Math.acos(x / 60 % 2 - 1)) * 12 - 12 + (
                                 e = (((1 - e / Math.PI) * 180 + scrollx | 0) + 360) % 360,
                                 // door
                                 z < 42 && between(e - 126, 24) && e % 3 + 1
@@ -62,7 +62,7 @@ setInterval(x = (x, y) => (
                                 || between(z / 6 % 51, 1) && 6
                                 || z % 6 && (z % 6 - z - e) % 12 && (11 + (z % 6 - z - e) % 12 && 8 + (z / 6 | 0) * ((z % 6 - z - e) / 12 | 0) / Math.PI % 1 || 6)
                             ) * 2 - (g = z * 360 - e) * g / Math.PI % 1 * 2,
-            d = Math.min(1, -Math.min(0, Math.hypot(60 - x, 12 - z + playery) / 12 - 2)) * magic * l / 80,
+            d = Math.min(1, -Math.min(0, Math.hypot(60 - x, 12 - z + playery) / 12 - 2)) * magic * l / 100,
             data.data.set([9 * d + l * 8, 6 * d + l * 8, 6 * l + d + l * 8, 6 * 60], i * 4);
         c.putImageData(data, 0, 0)
     })
