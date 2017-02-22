@@ -19,7 +19,7 @@ setInterval(x = (x, y) => (
 
     // check window collision
     e = 98 + scrollx,
-    ((z / 60 | 0) - 19 || step % 60 < 30) && ((g = (z / 60 | 0) * 6 + ((e + 360) % 360) / 60 | 0) * 28 % 64 < 39 - g / 4) && between(z % 60 - 30 - sy, 1 - sy) && between((38 + scrollx) % 60, 52) && (
+    ((z / 60 | 0) - 19 || step % 60 < 30) && (g = (z / 60 | 0) * 6 + ((e + 360) % 360) / 60 | 0) * 28 % 64 < 39 - g / 4 && between(z % 60 - 30 - sy, 1 - sy) && between((38 + scrollx) % 60, 52) && (
         sy = 13, playery += 30 - playery % 60
     ),
 
@@ -37,11 +37,11 @@ setInterval(x = (x, y) => (
             z = scrolly + y,
             l =
                 // player
-                between(f = z - playery + !win * Math.sin(e / 2 + 14)*(c[1]?1:14-Math.hypot(sy))/8|0, 24) && between(e + 1, 16) && !(f < 0 || 47 - e < f * 2 || f < 18 - e * 3 && e * 5 - 4 < f || 37 - e * 2 < f && f < e + 4)
+                between(f = z - playery + !win * Math.sin(e / 2 + 14)*(c[1]?1:14-Math.hypot(sy))/8|0, 24) && between(e + 1, 16) && ~f && 48 - e > f * 2 && f > 17 - e * 3 | e * 5 - 3 > f && 38 - e * 2 > f | f > e + 3
                     ? f - e - 7
-                        ? 30 - e * 2 < f && f < e + 4
-                            ? 18
-                            : 3 - (x + z) % 2 / 3
+                        ? 31 - e * 2 > f | f > e + 3
+                            ? 3 - (x + z) % 2 / 3
+                            : 18
                         : 5
                     // world
                     : z < 0
