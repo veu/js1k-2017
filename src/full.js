@@ -40,9 +40,9 @@ setInterval(x = (x, y) => (
                 between(f = z - playery + !win * Math.sin(e / 2 + 14)*(c[1]?1:14-Math.hypot(sy))/8|0, 24) && between(e + 1, 16) && ~f && 48 - e > f * 2 && f > 17 - e * 3 | e * 5 - 3 > f && 38 - e * 2 > f | f > e + 3
                     ? f - e - 7
                         ? 31 - e * 2 > f | f > e + 3
-                            ? 3 - (x + z) % 2 / 3
+                            ? (3 < f - e) + 3 - (x + z) % 2 / 3
                             : 18
-                        : 5
+                        : 7
                     // world
                     : z < 0
                         // ground
