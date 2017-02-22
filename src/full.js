@@ -8,7 +8,7 @@ onkeydown = onkeyup = (x, y) => (c[39 - x.which] = x.type[5]),
 data = new ImageData(120, magic = 160),
 
 setInterval(x = (x, y) => (
-    scrollx = (scrollx + (!c[2] - !c[0]) * 4 + 360) % 360,
+    scrollx = ((!c[2] - !c[0]) * 4 + scrollx + 360) % 360,
 
     // update position
     z = playery += sy = -Math.min(c[1] && magic && magic-- ? 2 : 8, 1 - sy),
@@ -19,7 +19,7 @@ setInterval(x = (x, y) => (
 
     // check window collision
     e = 98 + scrollx,
-    ((z / 60 | 0) - 19 || step % 60 < 30) && ((g = (z / 60 | 0) * 6 + (((e + 360) % 360) / 60 | 0)) * 28 % 64 < 39 - g / 4) && between(z % 60 - 30 - sy, 1 - sy) && between((scrollx + 38) % 60, 52) && (
+    ((z / 60 | 0) - 19 || step % 60 < 30) && ((g = (z / 60 | 0) * 6 + (((e + 360) % 360) / 60 | 0)) * 28 % 64 < 39 - g / 4) && between(z % 60 - 30 - sy, 1 - sy) && between((38 + scrollx) % 60, 52) && (
         sy = 13, playery += 30 - playery % 60
     ),
 
