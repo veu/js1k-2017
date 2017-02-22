@@ -1,7 +1,7 @@
 playery = step = sy = scrolly = 0,
 a.style.cssText = 'height:100%;image-rendering:pixelated;image-rendering:-moz-crisp-edges',
 
-between = (x, y) => (0 < x && x < y),
+between = (x, y) => (x < y && x > 0),
 
 onkeydown = onkeyup = (x, y) => (c[39 - x.which] = x.type[5]),
 
