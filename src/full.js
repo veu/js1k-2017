@@ -37,9 +37,9 @@ setInterval(x = (x, y) => (
             z = scrolly + y,
             l =
                 // player
-                between(f = z - playery + !win * Math.sin(e / 2 + 14)*(c[1]?1:14-Math.hypot(sy))/8|0, 24) && between(e + 1, 16) && !(f < 0 || 47 - e < f * 2 || f < 18 - e * 3 && e * 5 - 4 < f || 37 - f < e * 2 && f < e + 4)
-                    ? e + 7 - f
-                        ? 30 - f < e * 2 && f < e + 4
+                between(f = z - playery + !win * Math.sin(e / 2 + 14)*(c[1]?1:14-Math.hypot(sy))/8|0, 24) && between(e + 1, 16) && !(f < 0 || 47 - e < f * 2 || f < 18 - e * 3 && e * 5 - 4 < f || 37 - e * 2 < f && f < e + 4)
+                    ? f - e - 7
+                        ? 30 - e * 2 < f && f < e + 4
                             ? 18
                             : 3 - (x + z) % 2 / 3
                         : 5
@@ -60,8 +60,8 @@ setInterval(x = (x, y) => (
                                 || ((z / 60 | 0) - 19 || step % 60 < 30) && ((g = (z / 60 | 0) * 6 + (((e + 360) % 360) / 60 | 0)) * 28 % 64 < 39 - g / 4) && between(z % 60 - 30, 24) && between(e % 60 - 6, 24)
                                 // wall
                                 || between(z / 6 % 51, 1) && 7
-                                || z % 6 && (e + z - z % 6) % 12 && (11 - (e + z - z % 6) % 12 && 8 || 6)
-                            ) * 2 - (g = z * 360 + e) * g / Math.PI % 1 * 2,
+                                || z % 6 && (z % 6 - z - e) % 12 && (11 + (z % 6 - z - e) % 12 && 8 || 6)
+                            ) * 2 - (g = z * 360 - e) * g / Math.PI % 1 * 2,
             d = Math.min(1, -Math.min(0, Math.hypot(60 - x, 12 - z + playery) / 12 - 2)) * magic * l / 80,
             data.data.set([9 * d + l * 8, 6 * d + l * 8, 6 * l + d + l * 8, 6 * 60], i * 4);
         c.putImageData(data, 0, 0)
