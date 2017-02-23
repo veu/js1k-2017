@@ -1,6 +1,6 @@
 # Leap of Faith
 
-A platformer in 1023b for [JS1k 2017](http://js1k.com/2017-magic/).
+A platformer in 1024b for [JS1k 2017](http://js1k.com/2017-magic/).
 
 ![Screenshot](screenshot.png)
 
