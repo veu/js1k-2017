@@ -41,16 +41,13 @@ gulp.task('minify', function () {
             namesToReplace: [
               'between',
               'data',
-              'dir',
               'magic',
-              'mod',
               'playery',
               'scrollx',
               'scrolly',
               'step',
               'sy',
-              'win',
-              'windowat'
+              'win'
             ]
           }
         ] 
