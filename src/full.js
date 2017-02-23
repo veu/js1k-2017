@@ -51,7 +51,7 @@ setInterval(x = (x, y) => (
                             // sky
                             ? !win || (x - 60) / (100 - y) * 5 + step / 5 & 1 && 5 - i * i / Math.PI % 1
                             // tower
-                            : Math.sin(e = Math.acos(x / 60 % 2 - 1)) * 12 - 12 + (
+                            : Math.sin(e = Math.acos(x / 60 - 1)) * 12 - 12 + (
                                 e = (((1 - e / Math.PI) * 180 + scrollx | 0) + 360) % 360,
                                 // door
                                 z < 42 && between(e - 126, 24) && e % 3 + 1
