@@ -37,9 +37,9 @@ setInterval(x = (x, y) => (
             z = scrolly + y,
             l =
                 // player
-                between(f = z - playery + !win * Math.sin(e / 2 + 14)*(c[1]?1:14-Math.hypot(sy))/8|0, 24) && between(e + 1, 16) && ~f && 48 - e > f * 2 && f > 17 - e * 3 | e * 5 - 3 > f && 38 - e * 2 > f | f > e + 3
+                between(f = z - playery + !win * Math.sin(e / 2 + 14)*(c[1]?1:14-Math.hypot(sy))/8|0, 24) && between(e + 1, 16) && ~f && 48 - e > f * 2 && f > 17 - e * 3 | e * 5 - 3 > f && 38 - e * 2 > f | 3 < f - e
                     ? f - e - 7
-                        ? 31 - e * 2 > f | f > e + 3
+                        ? 31 - e * 2 > f | 3 < f - e
                             ? (3 < f - e) + 3 - (x + z) % 2 / 3
                             : 18
                         : 7
