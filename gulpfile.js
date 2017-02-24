@@ -39,6 +39,7 @@ gulp.task('minify', function () {
             excludedCharacters: [
             ],
             namesToReplace: [
+              'active',
               'between',
               'data',
               'magic',
@@ -46,8 +47,7 @@ gulp.task('minify', function () {
               'scrollx',
               'scrolly',
               'step',
-              'sy',
-              'win'
+              'sy'
             ]
           }
         ] 
