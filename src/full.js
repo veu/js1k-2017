@@ -1,7 +1,7 @@
 playery = step = sy = scrolly = 0,
 a.style.cssText = 'height:100%;image-rendering:pixelated;image-rendering:-moz-crisp-edges',
 
-between = (x, y) => x < y && x > 0,
+between = (x, y) => x < (y || 24) && x > 0,
 
 onkeydown = onkeyup = (x, y) => c[39 - x.which] = x.type[5],
 
@@ -19,7 +19,7 @@ setInterval(
                 z = scrolly + y,
                 l =
                     // player
-                    between(f = z - playery + active * Math.sin(e / 2 + 14)*(c[1]?1:14-Math.hypot(sy))/8|0, 24) && between(e + 1, 16) && ~f && 48 - e > f * 2 && f > 17 - e * 3 | e * 5 - 3 > f && 38 - e * 2 > f | 3 < f - e
+                    between(f = z - playery + active * Math.sin(e / 2 + 14)*(c[1]?1:14-Math.hypot(sy))/8|0) && between(e + 1, 16) && ~f && 48 - e > f * 2 && f > 17 - e * 3 | e * 5 - 3 > f && 38 - e * 2 > f | 3 < f - e
                         ? (
                             f - e - 7
                                 ? 31 - e * 2 > f | 3 < f - e
@@ -38,10 +38,10 @@ setInterval(
                                 : Math.sin(e = Math.acos(x / 60 - 1)) * 12 - 12 + (
                                     e = (((1 - e / Math.PI) * 180 + scrollx | 0) + 360) % 360,
                                     // door
-                                    z < 42 && between(150 - e, 24) && 3 - e % 3
+                                    z < 42 && between(150 - e) && 3 - e % 3
                                     // windows
                                     || ((z / 60 | 0) % 10 - 9 || step % 60 < 30) && (g = (z / 60 | 0) * 6 + ((e + 360) % 360) / 60 | 0) * 28 % 64 < 39 - g / 4 && between(z % 60 - 30 + 6, 6) && between(e % 60, 36) && 10
-                                    || ((z / 60 | 0) % 10 - 9 || step % 60 < 30) && (g = (z / 60 | 0) * 6 + ((e + 360) % 360) / 60 | 0) * 28 % 64 < 39 - g / 4 && between(z % 60 - 30, 24) && between(30 - e % 60, 24)
+                                    || ((z / 60 | 0) % 10 - 9 || step % 60 < 30) && (g = (z / 60 | 0) * 6 + ((e + 360) % 360) / 60 | 0) * 28 % 64 < 39 - g / 4 && between(z % 60 - 30) && between(30 - e % 60)
                                     // wall
                                     || between(z / 6 % 51, 1) && 5
                                     || z % 6 && (z % 6 - z - e) % 12 && (11 + (z % 6 - z - e) % 12 && 8 + (z / 6 | 0) * ((z % 6 - z - e) / 12 | 0) / Math.PI % 2 || 5)
@@ -59,7 +59,7 @@ setInterval(
 
         // check window collision
         e = 98 + scrollx,
-        ((z / 60 | 0) % 10 - 9 || step % 60 < 30) && (g = (z / 60 | 0) * 6 + ((e + 360) % 360) / 60 | 0) * 28 % 64 < 39 - g / 4 && between(z % 60 - 30 - sy, 1 - sy) && between((38 + scrollx) % 60, 52) && (
+        ((z / 60 | 0) % 10 - 9 || step % 60 < 30) && (g = (z / 60 | 0) * 6 + ((e + 360) % 360) / 60 | 0) * 28 % 64 < 39 - g / 4 && between(z % 60 - 30 - sy, 1 - sy || 1) && between((38 + scrollx) % 60, 52) && (
             sy = 13, playery += 30 - playery % 60
         ),
 
