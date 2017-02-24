@@ -10,7 +10,9 @@ data = new ImageData(120, magic = 160),
 setInterval(
     x = (x, y) => requestAnimationFrame(
         x = (x, y) => {
-            for (i = 120 * 160; i--;)
+            for (i = 120 * 160; i--;
+                 d = Math.min(1, -Math.min(0, Math.hypot(60 - x, 12 - z + playery) / 12 - 2)) * magic * l / 100,
+                 data.data.set([9 * d + l * 8, 6 * d + l * 8, 6 * l + d + l * 8, 6 * 60], i * 4))
                 x = i % 120,
                 y = 160 + (x - i) / 120,
                 e = ((c[2] ? 69 - x : x - 53) + 360) % 360,
@@ -41,9 +43,7 @@ setInterval(
                                     // wall
                                     || between(z / 6 % 51, 1) && 5
                                     || z % 6 && (z % 6 - z - e) % 12 && (11 + (z % 6 - z - e) % 12 && 8 + (z / 6 | 0) * ((z % 6 - z - e) / 12 | 0) / Math.PI % 2 || 5)
-                                ) * 2 - (z * 360 - e) ** 2 / Math.PI % 2,
-                d = Math.min(1, -Math.min(0, Math.hypot(60 - x, 12 - z + playery) / 12 - 2)) * magic * l / 100,
-                data.data.set([9 * d + l * 8, 6 * d + l * 8, 6 * l + d + l * 8, 6 * 60], i * 4);
+                                ) * 2 - (z * 360 - e) ** 2 / Math.PI % 2;
             c.putImageData(data, 0, 0)
         },
         scrollx = ((!c[2] - !c[0]) * 4 + scrollx + 360) % 360,
