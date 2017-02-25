@@ -26,14 +26,14 @@ setInterval(
                                     ? (3 < f - e) + 3 - (x + z) % 2 / 3
                                     : 15
                                 : 6
-                        ) - (f * 3 - e ** 2) / 60
+                        ) - (f * 3 - e * e) / 60
                         // world
                         : z < 0
                             // ground
                             ? z + 6 - (x + z) % 2 / 3
                             : 1230 < z
                                 // sky
-                                ? active || (x - 60) / (100 - y) * 5 + step / 5 & 1 && 5 - i ** 2 / Math.PI % 2
+                                ? active || (x - 60) / (100 - y) * 5 + step / 5 & 1 && 5 - i * i / Math.PI % 2
                                 // tower
                                 : Math.sin(e = Math.acos(x / 60 - 1)) * 12 - 12 + (
                                     e = (((1 - e / Math.PI) * 180 + scrollx | 0) + 360) % 360,
@@ -45,7 +45,7 @@ setInterval(
                                     // wall
                                     || between(z / 6 % 51, 1) && 5
                                     || z % 6 && (z % 6 - z - e) % 12 && (11 + (z % 6 - z - e) % 12 && 8 + (z / 6 | 0) * ((z % 6 - z - e) / 12 | 0) / Math.PI % 2 || 5)
-                                ) * 2 - (z * 360 - e) ** 2 / Math.PI % 2;
+                                ) * 2 - (e = z * 360 - e) * e / Math.PI % 2;
             c.putImageData(data, 0, 0)
         },
         scrollx = ((!c[2] - !c[0]) * 4 + scrollx + 360) % 360,
