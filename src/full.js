@@ -52,7 +52,7 @@ setInterval(
 
         // update position
         z = playery += sy = -Math.min(c[1] && magic && magic-- ? 2 : 8, 1 - sy),
-        scrolly += 110 < playery - scrolly ? playery - scrolly - 110 : playery - scrolly < 5 && playery - scrolly - 5,
+        scrolly = -Math.min(110 - playery, -Math.min(playery - 5, scrolly)),
 
         // check tower top collision
         (active = playery < 1229) || (playery = c[sy = 0] = 1230),
